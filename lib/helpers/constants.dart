@@ -1,3 +1,15 @@
+import 'package:flutter/material.dart';
+
+const double smallScreenMaxWidth = 780;
+const double mediumScreenMaxWidth = 1060;
+
+const double largeScreenToolbarHeight = kToolbarHeight + 10;
+const double smallScreenToolbarHeight = 35;
+
+const String homeTitle1 = 'Hey! I am';
+const String homeTitle2 = 'Jasen LaBolle';
+const String homeTitle3 = 'Full Stack Developer';
+
 const List<String> myPages = <String>[
   'Home',
   'About',

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'constants/layout_constants.dart';
+import 'constants.dart';
 
 class ResponsiveLayout extends StatelessWidget {
   final Widget largeScreen;

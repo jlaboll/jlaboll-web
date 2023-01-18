@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:jlaboll_web/helpers/constants/layout_constants.dart';
+import 'package:jlaboll_web/helpers/constants.dart';
 import 'package:jlaboll_web/helpers/responsive_layout.dart';
 
-import '../my_url_launcher.dart';
+import 'my_url_launcher.dart';
 
 final MyURLLauncher launcher = MyURLLauncher();
 
-Widget VerticalScaledSizedBox(BuildContext context) => SizedBox(
-      height: MediaQuery.of(context).size.height * 0.02,
+Widget VertScaledBox(BuildContext context, [double scale = 0.02]) => SizedBox(
+      height: MediaQuery.of(context).size.height * scale,
     );
 
-Widget HorizontalScaledSizedBox(BuildContext context) => SizedBox(
-      width: MediaQuery.of(context).size.width * 0.02,
+Widget HorizScaledBox(BuildContext context, [double scale = 0.02]) => SizedBox(
+      width: MediaQuery.of(context).size.width * scale,
     );
 
 Widget pageBody(BuildContext context, {required Widget child}) => SizedBox(
