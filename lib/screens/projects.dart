@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../helpers/constants/object_constants.dart';
+import '../helpers/helper_methods.dart';
 
 class Projects extends StatelessWidget {
   final ScrollController scrollController = ScrollController();
