@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:jlaboll_web/helpers/my_colors.dart';
 
 import 'my_widget.dart';
 
@@ -13,7 +14,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Jasen LaBolle',
       theme: ThemeData(
-        primaryColor: Colors.blue,
+        primaryColor: MyColors.primary,
         textTheme: GoogleFonts.nunitoSansTextTheme(Theme.of(context).textTheme),
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
