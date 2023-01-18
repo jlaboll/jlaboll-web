@@ -13,8 +13,9 @@ class NavBarItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(
-          horizontal: ResponsiveLayout.isSmallScreen(context) ? 5 : 20,
-          vertical: ResponsiveLayout.isSmallScreen(context) ? 0 : 10),
+        horizontal: ResponsiveLayout.isSmallScreen(context) ? 5 : 20,
+        vertical: ResponsiveLayout.isSmallScreen(context) ? 0 : 10,
+      ),
       child: Center(
           child: MouseRegion(
         cursor: SystemMouseCursors.click,
@@ -25,7 +26,9 @@ class NavBarItem extends StatelessWidget {
             child: Text(
               title,
               style: TextStyle(
-                  fontSize: 15, fontWeight: FontWeight.w600, color: color),
+                  fontSize: ResponsiveLayout.isSmallScreen(context) ? 10 : 15,
+                  fontWeight: FontWeight.w600,
+                  color: color),
             ),
           ),
         ),
