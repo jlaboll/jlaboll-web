@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:jlaboll_web/helpers/my_colors.dart';
 import 'package:jlaboll_web/screens/about.dart';
 import 'package:jlaboll_web/screens/home.dart';
-import 'package:jlaboll_web/widgets/large_screen_nav_bar.dart';
-import 'package:jlaboll_web/widgets/small_screen_nav_bar.dart';
-
-import 'helpers/responsive_layout.dart';
+import 'package:jlaboll_web/widgets/my_nav_bar.dart';
 
 class MyWidget extends StatefulWidget {
   @override
@@ -12,13 +10,12 @@ class MyWidget extends StatefulWidget {
 }
 
 class _MyWidgetState extends State<MyWidget> {
-  late ScrollController desktopController, mobileController;
+  late ScrollController scrollController;
   late List<Widget> pageList;
 
   @override
   void initState() {
-    desktopController = ScrollController();
-    mobileController = ScrollController();
+    scrollController = ScrollController();
     pageList = <Widget>[Home(), About()];
     super.initState();
   }
@@ -27,44 +24,22 @@ class _MyWidgetState extends State<MyWidget> {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
+      backgroundColor: MyColors.secondary_grey,
       body: Stack(
         children: <Widget>[
           Scrollbar(
-            controller: ResponsiveLayout.isSmallScreen(context)
-                ? mobileController
-                : desktopController,
-            child: ResponsiveLayout.isLargeScreen(context) ||
-                    ResponsiveLayout.isMediumScreen(context)
-                ? desktopBody
-                : mobileBody,
+            controller: scrollController,
+            child: ListView(
+              controller: scrollController,
+              children: pageList,
+            ),
           ),
-          if (ResponsiveLayout.isSmallScreen(context))
-            Align(
-              alignment: Alignment.bottomCenter,
-              child: SmallScreenNavBar(mobileController),
-            )
-          else
-            Align(
-              alignment: Alignment.centerLeft,
-              child: LargeScreenNavBar(desktopController),
-            )
+          Align(
+            alignment: Alignment.centerLeft,
+            child: MyNavBar(scrollController),
+          )
         ],
       ),
     ));
   }
-
-  Widget get desktopBody => ListView(
-        controller: desktopController,
-        children: pageList,
-      );
-
-  Widget get mobileBody => Container(
-        margin: const EdgeInsets.only(
-          bottom: 35,
-        ),
-        child: ListView(
-          controller: mobileController,
-          children: pageList,
-        ),
-      );
 }
