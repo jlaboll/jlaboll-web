@@ -4,8 +4,9 @@ import 'package:jlaboll_web/helpers/my_colors.dart';
 
 import '../helpers/helper_methods.dart';
 import '../helpers/responsive_layout.dart';
+import 'abstract_screen.dart';
 
-class Home extends StatelessWidget {
+class Home extends StatelessWidget implements AbstractScreen {
   final ScrollController scrollController = ScrollController();
   @override
   Widget build(BuildContext context) {
@@ -56,4 +57,10 @@ class Home extends StatelessWidget {
           )),
     );
   }
+
+  @override
+  Icon get icon => const Icon(Icons.home);
+
+  @override
+  String get title => 'Home';
 }

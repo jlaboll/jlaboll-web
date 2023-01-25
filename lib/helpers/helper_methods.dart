@@ -51,3 +51,56 @@ Widget cardView(List<Widget> list) {
         ),
       ));
 }
+
+Widget leftToolbar(double width, Widget child, Decoration decoration) {
+  return Container(
+    width: width,
+    height: double.infinity,
+    alignment: Alignment.centerLeft,
+    decoration: decoration,
+    child: child,
+  );
+}
+
+Widget rightToolbar(double width, Widget child, Decoration decoration) {
+  return Container(
+    width: width,
+    height: double.infinity,
+    alignment: Alignment.centerRight,
+    decoration: decoration,
+    child: child,
+  );
+}
+
+Widget topToolbar(double width, Widget child, Decoration decoration) {
+  return Container(
+    width: width,
+    height: double.infinity,
+    alignment: Alignment.topCenter,
+    decoration: decoration,
+    child: child,
+  );
+}
+
+Widget bottomToolbar(double width, Widget child, Decoration decoration) {
+  return Container(
+    width: width,
+    height: double.infinity,
+    alignment: Alignment.bottomCenter,
+    decoration: decoration,
+    child: child,
+  );
+}
+
+Decoration shadowDecoration(
+    Color decor_color, double offset_x, double offset_y, double blurRadius) {
+  return BoxDecoration(
+    color: decor_color,
+    boxShadow: <BoxShadow>[
+      BoxShadow(
+          offset: Offset(offset_x, offset_y),
+          color: Colors.black,
+          blurRadius: blurRadius),
+    ],
+  );
+}

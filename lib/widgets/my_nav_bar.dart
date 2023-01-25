@@ -33,7 +33,7 @@ class MyNavBar extends StatelessWidget {
               for (int i = 0; i < myPages.length; i++)
                 Column(children: <Widget>[
                   NavBarItem(
-                      title: myPages[i],
+                      title: myPages[i].obj1,
                       onTap: () => controller.animateTo(
                           i * MediaQuery.of(context).size.height,
                           duration: const Duration(milliseconds: 600),
