@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jlaboll_web/widgets/screen_widgets/home_avatar.dart';
 
 import '../widgets/layout.dart';
 
@@ -36,17 +37,8 @@ class Home extends StatelessWidget {
               fontWeight: FontWeight.bold,
               color: Theme.of(context).colorScheme.onSurface),
         ),
-        Padding(
-          padding: EdgeInsets.all(20),
-          child: CircleAvatar(
-            radius: (MediaQuery.of(context).size.width / 8) + 10,
-            backgroundColor: Theme.of(context).colorScheme.tertiary,
-            child: CircleAvatar(
-              radius: MediaQuery.of(context).size.width / 8,
-              foregroundImage: AssetImage('profile.jpg'),
-            ),
-          ),
-        ),
+        Padding(padding: EdgeInsets.all(10)),
+        HomeAvatar(),
       ],
     );
   }

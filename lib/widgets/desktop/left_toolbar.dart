@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jlaboll_web/helpers/screen_item.dart';
-import 'package:jlaboll_web/widgets/left_toolbar_item.dart';
+import 'package:jlaboll_web/widgets/desktop/left_toolbar_item.dart';
 
 class LeftToolbar extends StatelessWidget {
   LeftToolbar(this.controller, this.screens);

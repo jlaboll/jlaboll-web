@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:jlaboll_web/widgets/skill_button.dart';
 import 'package:jlaboll_web/widgets/titled_wrap.dart';
 
+import '../widgets/layout.dart';
 import '../widgets/responsive_layout.dart';
 
 class Skills extends StatelessWidget {
@@ -100,6 +101,9 @@ class Skills extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (Layout.of(context).mobile) {
+      return Container();
+    }
     return Container(
       padding: EdgeInsets.all(25),
       child: Column(

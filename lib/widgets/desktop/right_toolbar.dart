@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../helpers/helper_methods.dart';
+import '../../helpers/helper_methods.dart';
 
 class RightToolbar extends StatelessWidget {
   static List<Map<String, String>> myLinks = <Map<String, String>>[

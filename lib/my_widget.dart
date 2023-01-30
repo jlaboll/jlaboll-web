@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:jlaboll_web/screens/about.dart';
 import 'package:jlaboll_web/screens/home.dart';
-import 'package:jlaboll_web/screens/projects.dart';
-import 'package:jlaboll_web/screens/skills.dart';
-import 'package:jlaboll_web/screens/work.dart';
-import 'package:jlaboll_web/widgets/desktop_layout.dart';
+import 'package:jlaboll_web/widgets/desktop/desktop_layout.dart';
 import 'package:jlaboll_web/widgets/layout.dart';
-import 'package:jlaboll_web/widgets/mobile_layout.dart';
+import 'package:jlaboll_web/widgets/mobile/mobile_layout.dart';
 
 import 'helpers/screen_item.dart';
 
@@ -28,26 +24,26 @@ class _MyWidgetState extends State<MyWidget> {
         icon: Icons.home,
         child: Home(),
       ),
-      ScreenItem(
-        title: 'About',
-        icon: Icons.info,
-        child: About(),
-      ),
-      ScreenItem(
-        title: 'Skills',
-        icon: Icons.bolt,
-        child: Skills(),
-      ),
-      ScreenItem(
-        title: 'Work',
-        icon: Icons.work,
-        child: Work(),
-      ),
-      ScreenItem(
-        title: 'Projects',
-        icon: Icons.code,
-        child: Projects(),
-      ),
+      // ScreenItem(
+      //   title: 'About',
+      //   icon: Icons.info,
+      //   child: About(),
+      // ),
+      // ScreenItem(
+      //   title: 'Skills',
+      //   icon: Icons.bolt,
+      //   child: Skills(),
+      // ),
+      // ScreenItem(
+      //   title: 'Work',
+      //   icon: Icons.work,
+      //   child: Work(),
+      // ),
+      // ScreenItem(
+      //   title: 'Projects',
+      //   icon: Icons.code,
+      //   child: Projects(),
+      // ),
     ];
     super.initState();
   }

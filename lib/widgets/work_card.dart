@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jlaboll_web/helpers/helper_methods.dart';
 import 'package:jlaboll_web/widgets/image_loading_animator.dart';
 
 class WorkCard extends StatelessWidget {
@@ -29,7 +30,7 @@ class WorkCard extends StatelessWidget {
               .value),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               Padding(
                 padding: EdgeInsets.all(5),
@@ -76,6 +77,27 @@ class WorkCard extends StatelessWidget {
                     ),
                   ],
                 ),
+              ),
+              OutlinedButton(
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.resolveWith<Color?>(
+                    (states) {
+                      if (states.contains(MaterialState.pressed)) {
+                        return Theme.of(context)
+                            .colorScheme
+                            .tertiary
+                            .withAlpha(127);
+                      }
+                      return Theme.of(context)
+                          .colorScheme
+                          .tertiary
+                          .withAlpha(0);
+                    },
+                  ),
+                ),
+                onPressed: () => launchURL(companyWebsite),
+                child: Icon(Icons.open_in_new,
+                    color: Theme.of(context).colorScheme.tertiary),
               ),
             ],
           ),

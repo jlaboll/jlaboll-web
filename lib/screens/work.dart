@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:jlaboll_web/widgets/work_card.dart';
 
+import '../widgets/layout.dart';
+
 class Work extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    if (Layout.of(context).mobile) {
+      return Container();
+    }
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../widgets/layout.dart';
+
 class About extends StatelessWidget {
   static List<String> aboutDetails = [
     'I am a Full-Stack Software Developer, graduated December 2020 with a B.S. of Computer Science, and have been working professionally since developing frontend, backend, and devops solutions.',
@@ -10,6 +12,9 @@ class About extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (Layout.of(context).mobile) {
+      return Container();
+    }
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 25, vertical: 25),
       child: Column(
