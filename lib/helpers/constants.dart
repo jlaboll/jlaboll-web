@@ -1,53 +1,63 @@
 import 'package:flutter/material.dart';
 
-const double smallScreenMaxWidth = 780;
-const double mediumScreenMaxWidth = 1060;
+const lightColorScheme = ColorScheme(
+  brightness: Brightness.light,
+  primary: Color(0xFF4355B9),
+  onPrimary: Color(0xFFFFFFFF),
+  primaryContainer: Color(0xFFDEE0FF),
+  onPrimaryContainer: Color(0xFF00105C),
+  secondary: Color(0xFF006971),
+  onSecondary: Color(0xFFFFFFFF),
+  secondaryContainer: Color(0xFF88F3FF),
+  onSecondaryContainer: Color(0xFF001F23),
+  tertiary: Color(0xFF006C4D),
+  onTertiary: Color(0xFFFFFFFF),
+  tertiaryContainer: Color(0xFF88F8C8),
+  onTertiaryContainer: Color(0xFF002115),
+  error: Color(0xFFBA1A1A),
+  errorContainer: Color(0xFFFFDAD6),
+  onError: Color(0xFFFFFFFF),
+  onErrorContainer: Color(0xFF410002),
+  background: Color(0xFFFEFBFF),
+  onBackground: Color(0xFF1B1B1F),
+  surface: Color(0xFFFEFBFF),
+  onSurface: Color(0xFF1B1B1F),
+  surfaceVariant: Color(0xFFE3E1EC),
+  onSurfaceVariant: Color(0xFF46464F),
+  outline: Color(0xFF767680),
+  onInverseSurface: Color(0xFFF3F0F4),
+  inverseSurface: Color(0xFF303034),
+  inversePrimary: Color(0xFFBAC3FF),
+  shadow: Color(0xFF000000),
+);
 
-const double largeScreenToolbarHeight = kToolbarHeight + 10;
-const double smallScreenToolbarHeight = 35;
-
-const String homeTitle1 = 'Hey! I am';
-const String homeTitle2 = 'Jasen LaBolle';
-const String homeTitle3 = 'Full Stack Developer';
-
-class Pair<T1, T2> {
-  final T1 obj1;
-  final T2 obj2;
-
-  Pair(this.obj1, this.obj2);
-}
-
-List<Pair<String, Icon>> myPages = <Pair<String, Icon>>[
-  Pair('Home', const Icon(Icons.home)),
-  Pair('About', const Icon(Icons.info)),
-  Pair('Skills', const Icon(Icons.bolt)),
-  Pair('Experience', const Icon(Icons.work)),
-  Pair('Projects', const Icon(Icons.code))
-];
-
-const List<Map<String, String>> myLinks = <Map<String, String>>[
-  {
-    'URL': 'https://github.com/jlaboll',
-    'iconURL': 'https://img.icons8.com/fluent/50/000000/github.png'
-  },
-  {
-    'URL': 'https://www.linkedin.com/in/jasen-labolle-7a57221a0',
-    'iconURL': 'https://img.icons8.com/fluent/50/000000/linkedin.png'
-  },
-];
-
-const List<Map<String, List<String>>> myWorkHistory =
-    <Map<String, List<String>>>[
-  {
-    'url': [''],
-    'title': ['Suran Systems, Inc.'],
-    'position': ['Full Stack Developer'],
-    'started': [''],
-    'ended': [''],
-    'details': ['']
-  },
-];
-
-const List<String> myAbout = <String>[
-  '',
-];
+const darkColorScheme = ColorScheme(
+  brightness: Brightness.dark,
+  primary: Color(0xFFBAC3FF),
+  onPrimary: Color(0xFF08218A),
+  primaryContainer: Color(0xFF293CA0),
+  onPrimaryContainer: Color(0xFFDEE0FF),
+  secondary: Color(0xFF4DD8E7),
+  onSecondary: Color(0xFF00363B),
+  secondaryContainer: Color(0xFF004F56),
+  onSecondaryContainer: Color(0xFF88F3FF),
+  tertiary: Color(0xFF6ADBAD),
+  onTertiary: Color(0xFF003826),
+  tertiaryContainer: Color(0xFF005139),
+  onTertiaryContainer: Color(0xFF88F8C8),
+  error: Color(0xFFFFB4AB),
+  errorContainer: Color(0xFF93000A),
+  onError: Color(0xFF690005),
+  onErrorContainer: Color(0xFFFFDAD6),
+  background: Color(0xFF1B1B1F),
+  onBackground: Color(0xFFE4E1E6),
+  surface: Color(0xFF1B1B1F),
+  onSurface: Color(0xFFE4E1E6),
+  surfaceVariant: Color(0xFF46464F),
+  onSurfaceVariant: Color(0xFFC7C5D0),
+  outline: Color(0xFF90909A),
+  onInverseSurface: Color(0xFF1B1B1F),
+  inverseSurface: Color(0xFFE4E1E6),
+  inversePrimary: Color(0xFF4355B9),
+  shadow: Color(0xFF000000),
+);

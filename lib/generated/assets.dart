@@ -2,7 +2,9 @@
 class Assets {
   Assets._();
 
+  static const String assetsHedgehog = 'assets/hedgehog.png';
+  static const String assetsOmnisLogo = 'assets/omnis_logo.png';
   static const String assetsProfile = 'assets/profile.jpg';
-  static const String assetsSpinner = 'assets/spinner.gif';
+  static const String assetsSuranlogon2019 = 'assets/suranlogon2019.jpg';
   static const String assetsTemp = 'assets/temp.jpeg';
 }

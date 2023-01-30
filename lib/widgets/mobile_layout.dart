@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
-
-import '../screens/abstract_screen.dart';
+import 'package:jlaboll_web/helpers/screen_item.dart';
 
 // ignore: must_be_immutable
 class MobileLayout extends StatelessWidget {
-  MobileLayout(this.controller, this.screens, this.links);
+  MobileLayout({required this.controller, required this.screens});
 
   ScrollController controller;
-  List<AbstractScreen> screens;
-  List<Map<String, String>> links;
+  List<ScreenItem> screens;
 
   @override
   Widget build(BuildContext context) {
@@ -30,10 +28,11 @@ class MobileLayout extends StatelessWidget {
         drawer: Drawer(
           child: ListView(
             children: <Widget>[
-              for (int i = 1; i < screens.length; i++)
+              for (int i = 0; i < screens.length; i++)
                 Padding(
                   padding: EdgeInsets.all(5),
                   child: ListTile(
+                    leading: Icon(screens[i].icon),
                     title: Text(screens[i].title),
                     onTap: () => controller.animateTo(
                         i * MediaQuery.of(context).size.height,
@@ -46,7 +45,13 @@ class MobileLayout extends StatelessWidget {
         ),
         body: ListView(
           controller: controller,
-          children: screens,
+          children: _buildListViewChildren(),
         ));
+  }
+
+  List<Widget> _buildListViewChildren() {
+    List<Widget> children = [];
+    for (var screen in screens) children.add(screen.child);
+    return children;
   }
 }

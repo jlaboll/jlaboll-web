@@ -1,66 +1,53 @@
 import 'package:flutter/material.dart';
-import 'package:jlaboll_web/helpers/constants.dart';
-import 'package:jlaboll_web/helpers/my_colors.dart';
 
-import '../helpers/helper_methods.dart';
-import '../helpers/responsive_layout.dart';
-import 'abstract_screen.dart';
+import '../widgets/layout.dart';
 
-class Home extends StatelessWidget implements AbstractScreen {
-  final ScrollController scrollController = ScrollController();
+class Home extends StatelessWidget {
+  static String homeTitle1 = 'Hey! I am';
+  static String homeTitle2 = 'Jasen LaBolle';
+  static String homeTitle3 = 'Full Stack Developer';
+
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: MediaQuery.of(context).size.height,
-      width: double.infinity,
-      child: padding(context,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            mainAxisSize: MainAxisSize.min,
-            children: <Widget>[
-              Text(
-                homeTitle1,
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                    fontSize: ResponsiveLayout.isSmallScreen(context) ? 15 : 20,
-                    fontWeight: FontWeight.bold,
-                    color: MyColors.primary_neon),
-              ),
-              VertScaledBox(context, 0.01),
-              Text(
-                homeTitle2,
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                    fontSize: ResponsiveLayout.isSmallScreen(context) ? 25 : 30,
-                    fontWeight: FontWeight.bold,
-                    color: MyColors.white),
-              ),
-              VertScaledBox(context, 0.01),
-              Text(
-                homeTitle3,
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                    fontSize: ResponsiveLayout.isSmallScreen(context) ? 20 : 25,
-                    fontWeight: FontWeight.bold,
-                    color: MyColors.white),
-              ),
-              VertScaledBox(context, 0.01),
-              CircleAvatar(
-                  backgroundColor: MyColors.secondary,
-                  radius: 120,
-                  child: CircleAvatar(
-                    radius: 110,
-                    foregroundImage: AssetImage('profile.jpg'),
-                    backgroundImage: AssetImage('spinner.gif'),
-                  )),
-            ],
-          )),
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+        Text(
+          homeTitle1,
+          textAlign: TextAlign.center,
+          style: TextStyle(
+              fontSize: Layout.of(context).mobile ? 15 : 20,
+              fontWeight: FontWeight.bold,
+              color: Theme.of(context).colorScheme.secondary),
+        ),
+        Text(
+          homeTitle2,
+          textAlign: TextAlign.center,
+          style: TextStyle(
+              fontSize: Layout.of(context).mobile ? 25 : 30,
+              fontWeight: FontWeight.bold,
+              color: Theme.of(context).colorScheme.onSurface),
+        ),
+        Text(
+          homeTitle3,
+          textAlign: TextAlign.center,
+          style: TextStyle(
+              fontSize: Layout.of(context).mobile ? 20 : 25,
+              fontWeight: FontWeight.bold,
+              color: Theme.of(context).colorScheme.onSurface),
+        ),
+        Padding(
+          padding: EdgeInsets.all(20),
+          child: CircleAvatar(
+            radius: (MediaQuery.of(context).size.width / 8) + 10,
+            backgroundColor: Theme.of(context).colorScheme.tertiary,
+            child: CircleAvatar(
+              radius: MediaQuery.of(context).size.width / 8,
+              foregroundImage: AssetImage('profile.jpg'),
+            ),
+          ),
+        ),
+      ],
     );
   }
-
-  @override
-  Icon get icon => const Icon(Icons.home);
-
-  @override
-  String get title => 'Home';
 }
