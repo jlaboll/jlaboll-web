@@ -11,7 +11,7 @@ class ImageLoadingAnimator extends StatelessWidget {
       loadingBuilder: (BuildContext context, Widget child,
           ImageChunkEvent? loadingProgress) {
         return AnimatedSwitcher(
-          duration: const Duration(seconds: 3),
+          duration: const Duration(milliseconds: 650),
           transitionBuilder: (Widget child, Animation<double> animation) {
             return ScaleTransition(
               scale: animation,

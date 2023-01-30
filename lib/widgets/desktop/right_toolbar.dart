@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jlaboll_web/widgets/image_loading_animator.dart';
 
 import '../../helpers/helper_methods.dart';
 
@@ -30,9 +31,8 @@ class RightToolbar extends StatelessWidget {
               child: SizedBox(
                 height: 30,
                 width: 30,
-                child: FadeInImage(
-                  placeholder: const AssetImage('spinner.gif'),
-                  image: NetworkImage(myLinks[i]['iconURL']!),
+                child: ImageLoadingAnimator(
+                  imageProvider: NetworkImage(myLinks[i]['iconURL']!),
                 ),
               ),
             ),

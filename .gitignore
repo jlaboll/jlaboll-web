@@ -25,3 +25,7 @@ doc/api/
 /lib/generated_plugin_registrant.dart
 /.flutter-plugins
 /.flutter-plugins-dependencies
+
+# Ignore assets
+/assets/
+/assets/*
