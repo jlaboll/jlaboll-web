@@ -4,13 +4,13 @@ class TitledWrap extends StatelessWidget {
   const TitledWrap(
       {required this.title,
       required this.titleFontSize,
-      required this.slivers,
+      required this.children,
       this.titleColor,
       this.titleDecorationColor});
 
   final String title;
   final double titleFontSize;
-  final List<Widget> slivers;
+  final List<Widget> children;
   final Color? titleColor;
   final Color? titleDecorationColor;
 
@@ -40,7 +40,7 @@ class TitledWrap extends StatelessWidget {
           direction: Axis.horizontal,
           spacing: 10,
           runSpacing: 10,
-          children: slivers,
+          children: children,
         ),
       ],
     );

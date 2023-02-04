@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:jlaboll_web/widgets/screen_widgets/screen_header.dart';
 import 'package:jlaboll_web/widgets/skill_button.dart';
 import 'package:jlaboll_web/widgets/titled_wrap.dart';
 
-import '../widgets/layout.dart';
 import '../widgets/responsive_layout.dart';
 
 class Skills extends StatelessWidget {
@@ -101,37 +101,20 @@ class Skills extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (Layout.of(context).mobile) {
-      return Container();
-    }
     return Container(
-      padding: EdgeInsets.all(25),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Row(
+          Flex(
+            direction: Axis.horizontal,
             mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Text(
-                'Skills',
-                style: TextStyle(
-                  textBaseline: TextBaseline.ideographic,
-                  fontWeight: FontWeight.w600,
-                  fontSize: 30,
-                  color: Theme.of(context).colorScheme.onBackground,
-                  decoration: TextDecoration.underline,
-                  decorationColor: Theme.of(context).colorScheme.tertiary,
-                  decorationStyle: TextDecorationStyle.solid,
-                  decorationThickness: 2,
-                ),
-              ),
-            ],
+            children: [ScreenHeader('Skills')],
           ),
           TitledWrap(
             title: 'Professional Skills',
             titleFontSize: 25,
-            slivers: List.generate(
+            children: List.generate(
               professionalSkillLinks.length,
               (index) => _buildConstrainedSkillSliver(
                 SkillButton(
@@ -146,7 +129,7 @@ class Skills extends StatelessWidget {
           TitledWrap(
             title: 'Other Skills',
             titleFontSize: 25,
-            slivers: List.generate(
+            children: List.generate(
               personalSkillLinks.length,
               (index) => _buildConstrainedSkillSliver(
                 SkillButton(
@@ -164,8 +147,8 @@ class Skills extends StatelessWidget {
 
   Widget _buildConstrainedSkillSliver(SkillButton child) {
     return ResponsiveLayout(
-      maxMediumWidth: 75,
-      maxSmallWidth: 50,
+      maxMediumWidth: 500,
+      maxSmallWidth: 300,
       largeChild: ConstrainedBox(
         constraints: BoxConstraints.tight(Size.square(100)),
         child: child,
@@ -175,7 +158,7 @@ class Skills extends StatelessWidget {
         child: child,
       ),
       smallChild: ConstrainedBox(
-        constraints: BoxConstraints.tight(Size.square(50)),
+        constraints: BoxConstraints.tight(Size.square(60)),
         child: child,
       ),
     );

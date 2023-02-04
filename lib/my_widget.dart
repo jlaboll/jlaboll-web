@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:jlaboll_web/screens/about.dart';
 import 'package:jlaboll_web/screens/home.dart';
+import 'package:jlaboll_web/screens/skills.dart';
 import 'package:jlaboll_web/widgets/desktop/desktop_layout.dart';
 import 'package:jlaboll_web/widgets/layout.dart';
 import 'package:jlaboll_web/widgets/mobile/mobile_layout.dart';
@@ -30,11 +31,11 @@ class _MyWidgetState extends State<MyWidget> {
         icon: Icons.info,
         child: About(),
       ),
-      // ScreenItem(
-      //   title: 'Skills',
-      //   icon: Icons.bolt,
-      //   child: Skills(),
-      // ),
+      ScreenItem(
+        title: 'Skills',
+        icon: Icons.bolt,
+        child: Skills(),
+      ),
       // ScreenItem(
       //   title: 'Work',
       //   icon: Icons.work,

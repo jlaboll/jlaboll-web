@@ -36,7 +36,9 @@ class MobileLayout extends StatelessWidget {
                   onTap: () {
                     Scaffold.of(context).closeDrawer();
                     controller.animateTo(
-                        index * MediaQuery.of(context).size.height,
+                        index *
+                            (MediaQuery.of(context).size.height -
+                                kToolbarHeight),
                         duration: const Duration(milliseconds: 500),
                         curve: Curves.ease);
                   },
