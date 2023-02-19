@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:jlaboll_web/widgets/screen_widgets/about_buttons.dart';
-import 'package:jlaboll_web/widgets/screen_widgets/screen_header.dart';
+import 'package:jlaboll_web/packages/components/app_text.dart';
+import 'package:jlaboll_web/packages/components/screen_container.dart';
+import 'package:jlaboll_web/packages/helpers/constants.dart';
 
+import '../packages/helpers/responsive_double.dart';
 import '../widgets/layout.dart';
 
 class About extends StatelessWidget {
@@ -15,110 +17,132 @@ class About extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (Layout.of(context).mobile) {
-      return Container(
-        padding: EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+      return ScreenContainer(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
-            ScreenHeader('About Me'),
-            Container(
-              padding: EdgeInsets.only(top: 10, left: 10, right: 10),
-              child: ConstrainedBox(
-                constraints: BoxConstraints(maxWidth: 75, maxHeight: 75),
-                child: Image(
-                  image: AssetImage('hedgehog.png'),
-                ),
-              ),
-            ),
-            Expanded(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: List.generate(
-                  aboutDetails.length + 1,
-                  (index) {
-                    if (index >= aboutDetails.length) {
-                      return AboutButtons();
-                    } else {
-                      return Padding(
-                        padding: EdgeInsets.symmetric(vertical: 10),
-                        child: Text(
-                          aboutDetails[index],
-                          style: TextStyle(
-                            color: Theme.of(context).colorScheme.onBackground,
-                            fontSize: Layout.of(context).mobile ? 12 : 20,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                      );
-                    }
-                  },
-                ),
-              ),
-            ),
+            _header(),
+            _image(context),
+            _expandedDetails(context),
           ],
         ),
       );
     }
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: 25, vertical: 25),
+    return ScreenContainer(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
-          ScreenHeader('About Me'),
+          _header(),
           Expanded(
             child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 100),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
-                  Container(
-                    padding: EdgeInsets.only(right: 30),
-                    child: ConstrainedBox(
-                      constraints:
-                          BoxConstraints(maxWidth: 225, maxHeight: 225),
-                      child: Image(
-                        image: AssetImage('hedgehog.png'),
-                      ),
-                    ),
-                  ),
-                  Expanded(
-                    child: Container(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: List.generate(
-                          aboutDetails.length + 1,
-                          (index) {
-                            if (index >= aboutDetails.length) {
-                              return AboutButtons();
-                            } else {
-                              return Padding(
-                                padding: EdgeInsets.symmetric(vertical: 10),
-                                child: Text(
-                                  aboutDetails[index],
-                                  style: TextStyle(
-                                    color: Theme.of(context)
-                                        .colorScheme
-                                        .onBackground,
-                                    fontSize:
-                                        Layout.of(context).mobile ? 12 : 20,
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                ),
-                              );
-                            }
-                          },
-                        ),
-                      ),
-                    ),
-                  ),
+                  _image(context),
+                  _expandedDetails(context),
                 ],
               ),
             ),
           ),
         ],
       ),
+    );
+  }
+
+  Widget _header() {
+    return AppText(
+      type: AppTextStyles.TITLE,
+      text: 'About Me',
+      shouldDecorate: true,
+    );
+  }
+
+  Widget _image(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.only(right: ResponsiveDouble(context, 25).value),
+      child: Image(
+        image: AssetImage('hedgehog.png'),
+        width: ResponsiveDouble(context, 225, mobileRatio: 0.33).value,
+        height: ResponsiveDouble(context, 225, mobileRatio: 0.33).value,
+      ),
+    );
+  }
+
+  Widget _expandedDetails(BuildContext context) {
+    return Expanded(
+      child: Container(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: List.generate(
+            aboutDetails.length + 1,
+            (index) {
+              if (index >= aboutDetails.length) {
+                return _detailButtons(context);
+              } else {
+                return Padding(
+                  padding: EdgeInsets.symmetric(
+                      vertical: ResponsiveDouble(context, 10).value),
+                  child: AppText(
+                    type: AppTextStyles.BODY,
+                    text: aboutDetails[index],
+                  ),
+                );
+              }
+            },
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _detailButtons(BuildContext context) {
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        if (constraints.maxWidth <= MOBILE_BREAKPOINT) {
+          return SizedBox(
+            width: constraints.maxWidth,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                ElevatedButton(
+                  child: Text('Contact Me'),
+                  onPressed: () {},
+                ),
+                SizedBox(
+                  height: 5,
+                ),
+                ElevatedButton(
+                  child: Text('Download Resume'),
+                  onPressed: () {},
+                ),
+              ],
+            ),
+          );
+        } else {
+          return SizedBox(
+            width: constraints.maxWidth,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                ElevatedButton(
+                  child: Text('Contact Me'),
+                  onPressed: () {},
+                ),
+                SizedBox(
+                  width: 10,
+                ),
+                ElevatedButton(
+                  child: Text('Download Resume'),
+                  onPressed: () {},
+                ),
+              ],
+            ),
+          );
+        }
+      },
     );
   }
 }

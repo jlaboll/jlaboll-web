@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
 
+const double MOBILE_BREAKPOINT = 280;
+const double TABLET_BREAKPOINT = 800;
+const double DESKTOP_BREAKPOINT = 1000;
+const double MAX_RESOLUTION_BREAKPOINT = 2460;
+
 const lightColorScheme = ColorScheme(
   brightness: Brightness.light,
   primary: Color(0xFF4355B9),

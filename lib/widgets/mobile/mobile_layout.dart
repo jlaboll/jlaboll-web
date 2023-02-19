@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:jlaboll_web/helpers/screen_item.dart';
+import 'package:jlaboll_web/classes/screen_item.dart';
 import 'package:jlaboll_web/widgets/mobile/mobile_app_bar.dart';
 
 // ignore: must_be_immutable

@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:jlaboll_web/screens/about.dart';
 import 'package:jlaboll_web/screens/home.dart';
+import 'package:jlaboll_web/screens/projects.dart';
 import 'package:jlaboll_web/screens/skills.dart';
+import 'package:jlaboll_web/screens/work.dart';
 import 'package:jlaboll_web/widgets/desktop/desktop_layout.dart';
 import 'package:jlaboll_web/widgets/layout.dart';
 import 'package:jlaboll_web/widgets/mobile/mobile_layout.dart';
 
-import 'helpers/screen_item.dart';
+import 'classes/screen_item.dart';
 
 class MyWidget extends StatefulWidget {
   @override
@@ -36,16 +38,16 @@ class _MyWidgetState extends State<MyWidget> {
         icon: Icons.bolt,
         child: Skills(),
       ),
-      // ScreenItem(
-      //   title: 'Work',
-      //   icon: Icons.work,
-      //   child: Work(),
-      // ),
-      // ScreenItem(
-      //   title: 'Projects',
-      //   icon: Icons.code,
-      //   child: Projects(),
-      // ),
+      ScreenItem(
+        title: 'Work',
+        icon: Icons.work,
+        child: Work(),
+      ),
+      ScreenItem(
+        title: 'Projects',
+        icon: Icons.code,
+        child: Projects(),
+      ),
     ];
     super.initState();
   }
@@ -55,7 +57,7 @@ class _MyWidgetState extends State<MyWidget> {
     return SafeArea(
       child: LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) {
-          if (constraints.maxWidth >= 760) {
+          if (constraints.maxWidth >= 800) {
             return Layout(
               mobile: false,
               child: DesktopLayout(

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:jlaboll_web/helpers/constants.dart';
+import 'package:jlaboll_web/packages/helpers/constants.dart';
+import 'package:responsive_framework/responsive_framework.dart';
 
 import 'my_widget.dart';
 
@@ -12,6 +13,19 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      builder: (context, child) => ResponsiveWrapper.builder(
+        BouncingScrollWrapper.builder(context, child!),
+        maxWidth: 2460,
+        minWidth: 280,
+        defaultScale: true,
+        breakpoints: [
+          const ResponsiveBreakpoint.resize(MOBILE_BREAKPOINT, name: MOBILE),
+          const ResponsiveBreakpoint.autoScale(TABLET_BREAKPOINT, name: TABLET),
+          const ResponsiveBreakpoint.resize(DESKTOP_BREAKPOINT, name: DESKTOP),
+          const ResponsiveBreakpoint.autoScale(MAX_RESOLUTION_BREAKPOINT,
+              name: "4K"),
+        ],
+      ),
       title: 'Jasen LaBolle',
       theme: ThemeData(
         colorScheme: darkColorScheme,

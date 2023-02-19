@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:jlaboll_web/helpers/screen_item.dart';
+import 'package:jlaboll_web/classes/screen_item.dart';
 import 'package:jlaboll_web/widgets/desktop/left_toolbar.dart';
 import 'package:jlaboll_web/widgets/desktop/right_toolbar.dart';
 

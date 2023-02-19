@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:jlaboll_web/packages/components/screen_container.dart';
+import 'package:jlaboll_web/packages/helpers/helpers.dart';
 import 'package:jlaboll_web/widgets/screen_widgets/screen_header.dart';
 import 'package:jlaboll_web/widgets/skill_button.dart';
 import 'package:jlaboll_web/widgets/titled_wrap.dart';
-
-import '../widgets/responsive_layout.dart';
 
 class Skills extends StatelessWidget {
   static List<Map<String, String>> languageLinks = [];
@@ -101,7 +101,7 @@ class Skills extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return ScreenContainer(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -116,8 +116,10 @@ class Skills extends StatelessWidget {
             titleFontSize: 25,
             children: List.generate(
               professionalSkillLinks.length,
-              (index) => _buildConstrainedSkillSliver(
-                SkillButton(
+              (index) => ConstrainedBox(
+                constraints: BoxConstraints.tight(
+                    Size.square(ResponsiveDouble(context, 75).value)),
+                child: SkillButton(
                   link: professionalSkillLinks[index]['link']!,
                   localAsset: professionalSkillLinks[index]['local'] == 't',
                   assetLocation: professionalSkillLinks[index]
@@ -131,8 +133,10 @@ class Skills extends StatelessWidget {
             titleFontSize: 25,
             children: List.generate(
               personalSkillLinks.length,
-              (index) => _buildConstrainedSkillSliver(
-                SkillButton(
+              (index) => ConstrainedBox(
+                constraints: BoxConstraints.tight(
+                    Size.square(ResponsiveDouble(context, 75).value)),
+                child: SkillButton(
                   link: personalSkillLinks[index]['link']!,
                   localAsset: personalSkillLinks[index]['local'] == 't',
                   assetLocation: personalSkillLinks[index]['asset_location']!,
@@ -141,25 +145,6 @@ class Skills extends StatelessWidget {
             ),
           ),
         ],
-      ),
-    );
-  }
-
-  Widget _buildConstrainedSkillSliver(SkillButton child) {
-    return ResponsiveLayout(
-      maxMediumWidth: 500,
-      maxSmallWidth: 300,
-      largeChild: ConstrainedBox(
-        constraints: BoxConstraints.tight(Size.square(100)),
-        child: child,
-      ),
-      mediumChild: ConstrainedBox(
-        constraints: BoxConstraints.tight(Size.square(75)),
-        child: child,
-      ),
-      smallChild: ConstrainedBox(
-        constraints: BoxConstraints.tight(Size.square(60)),
-        child: child,
       ),
     );
   }

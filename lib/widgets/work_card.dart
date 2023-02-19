@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:jlaboll_web/helpers/helper_methods.dart';
+import 'package:jlaboll_web/packages/helpers/methods.dart';
 import 'package:jlaboll_web/widgets/image_loading_animator.dart';
 
 class WorkCard extends StatelessWidget {

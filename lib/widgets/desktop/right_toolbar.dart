@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:jlaboll_web/widgets/image_loading_animator.dart';
 
-import '../../helpers/helper_methods.dart';
+import '../../packages/helpers/methods.dart';
 
 class RightToolbar extends StatelessWidget {
   static List<Map<String, String>> myLinks = <Map<String, String>>[

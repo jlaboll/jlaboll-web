@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:jlaboll_web/material_states/on_press_opacity.dart';
+import 'package:jlaboll_web/packages/material_states/material_states.dart';
 
 class LeftToolbarItem extends StatelessWidget {
   LeftToolbarItem(this.onPressed, this.icon, this.title);

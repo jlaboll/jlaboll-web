@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:jlaboll_web/packages/components/app_text.dart';
 import 'package:jlaboll_web/widgets/screen_widgets/home_avatar.dart';
-
-import '../widgets/layout.dart';
 
 class Home extends StatelessWidget {
   static String homeTitle1 = 'Hey! I am';
@@ -13,29 +12,20 @@ class Home extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
-        Text(
-          homeTitle1,
-          textAlign: TextAlign.center,
-          style: TextStyle(
-              fontSize: Layout.of(context).mobile ? 15 : 20,
-              fontWeight: FontWeight.bold,
-              color: Theme.of(context).colorScheme.secondary),
+        AppText(
+          type: AppTextStyles.SUBTITLE_SECONDARY,
+          text: homeTitle1,
+          shouldBold: true,
         ),
-        Text(
-          homeTitle2,
-          textAlign: TextAlign.center,
-          style: TextStyle(
-              fontSize: Layout.of(context).mobile ? 25 : 30,
-              fontWeight: FontWeight.bold,
-              color: Theme.of(context).colorScheme.onSurface),
+        AppText(
+          type: AppTextStyles.TITLE,
+          text: homeTitle2,
+          shouldBold: true,
         ),
-        Text(
-          homeTitle3,
-          textAlign: TextAlign.center,
-          style: TextStyle(
-              fontSize: Layout.of(context).mobile ? 20 : 25,
-              fontWeight: FontWeight.bold,
-              color: Theme.of(context).colorScheme.onSurface),
+        AppText(
+          type: AppTextStyles.SUBTITLE,
+          text: homeTitle3,
+          shouldBold: true,
         ),
         Padding(padding: EdgeInsets.all(10)),
         HomeAvatar(),
