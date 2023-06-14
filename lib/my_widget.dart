@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:jlaboll_web/screens/about.dart';
-import 'package:jlaboll_web/screens/home.dart';
-import 'package:jlaboll_web/screens/projects.dart';
-import 'package:jlaboll_web/screens/skills.dart';
-import 'package:jlaboll_web/screens/work.dart';
+import 'package:jlaboll_web/packages/helpers/constants.dart';
 import 'package:jlaboll_web/widgets/desktop/desktop_layout.dart';
-import 'package:jlaboll_web/widgets/layout.dart';
 import 'package:jlaboll_web/widgets/mobile/mobile_layout.dart';
+import 'package:responsive_framework/responsive_framework.dart';
 
 import 'classes/screen_item.dart';
 
@@ -22,33 +18,7 @@ class _MyWidgetState extends State<MyWidget> {
   @override
   void initState() {
     scrollController = ScrollController();
-    screenList = <ScreenItem>[
-      ScreenItem(
-        title: 'Home',
-        icon: Icons.home,
-        child: Home(),
-      ),
-      ScreenItem(
-        title: 'About',
-        icon: Icons.info,
-        child: About(),
-      ),
-      ScreenItem(
-        title: 'Skills',
-        icon: Icons.bolt,
-        child: Skills(),
-      ),
-      ScreenItem(
-        title: 'Work',
-        icon: Icons.work,
-        child: Work(),
-      ),
-      ScreenItem(
-        title: 'Projects',
-        icon: Icons.code,
-        child: Projects(),
-      ),
-    ];
+    screenList = screens;
     super.initState();
   }
 
@@ -57,21 +27,15 @@ class _MyWidgetState extends State<MyWidget> {
     return SafeArea(
       child: LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) {
-          if (constraints.maxWidth >= 800) {
-            return Layout(
-              mobile: false,
-              child: DesktopLayout(
-                controller: scrollController,
-                screens: screenList,
-              ),
+          if (ResponsiveBreakpoints.of(context).largerThan(MOBILE)) {
+            return DesktopLayout(
+              controller: scrollController,
+              screens: screenList,
             );
           } else {
-            return Layout(
-              mobile: true,
-              child: MobileLayout(
-                controller: scrollController,
-                screens: screenList,
-              ),
+            return MobileLayout(
+              controller: scrollController,
+              screens: screenList,
             );
           }
         },

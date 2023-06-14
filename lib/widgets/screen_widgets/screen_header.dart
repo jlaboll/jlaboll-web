@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:jlaboll_web/widgets/responsive_layout.dart';
 
 class ScreenHeader extends StatelessWidget {
   const ScreenHeader(this.title);
@@ -8,21 +7,9 @@ class ScreenHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ResponsiveLayout(
-      maxSmallWidth: 250,
-      maxMediumWidth: 500,
-      smallChild: Text(
-        title,
-        style: _buildTextStyle(15, Theme.of(context).colorScheme),
-      ),
-      mediumChild: Text(
-        title,
-        style: _buildTextStyle(20, Theme.of(context).colorScheme),
-      ),
-      largeChild: Text(
-        title,
-        style: _buildTextStyle(30, Theme.of(context).colorScheme),
-      ),
+    return Text(
+      title,
+      style: _buildTextStyle(30, Theme.of(context).colorScheme),
     );
   }
 

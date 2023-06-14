@@ -1,49 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:jlaboll_web/packages/components/app_text.dart';
-import 'package:jlaboll_web/packages/components/screen_container.dart';
 import 'package:jlaboll_web/packages/helpers/constants.dart';
+import 'package:jlaboll_web/widgets/image_loading_animator.dart';
 
-import '../packages/helpers/responsive_double.dart';
-import '../widgets/layout.dart';
-
-class About extends StatelessWidget {
-  static List<String> aboutDetails = [
-    'I am a Full-Stack Software Developer, graduated December 2020 with a B.S. of Computer Science, and have been working professionally since developing frontend, backend, and devops solutions.',
-    'I have a passion for continuing to learn new technologies and solutions, and I am always excited and interested in expanding my skill set. In my professional career I have worked on desktop, mobile, and web frontend applications, as well as backend REST API\'s, and SQL databases.',
-    'In my free time, I have been working on a bare metal, high availability, on-premises K8\'s deployment, and exploring Flutter as a single codebase, multi-platform application framework.',
-    'I also am a huge fan of hedgehogs, and have a pet hedgehog named Penelope.',
-  ];
-
+class MobileAbout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    if (Layout.of(context).mobile) {
-      return ScreenContainer(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: <Widget>[
-            _header(),
-            _image(context),
-            _expandedDetails(context),
-          ],
-        ),
-      );
-    }
-    return ScreenContainer(
+    return Padding(
+      padding: EdgeInsets.all(25),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
           _header(),
-          Expanded(
-            child: Container(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: <Widget>[
-                  _image(context),
-                  _expandedDetails(context),
-                ],
-              ),
-            ),
-          ),
+          _image(context),
+          _expandedDetails(context),
         ],
       ),
     );
@@ -51,7 +21,7 @@ class About extends StatelessWidget {
 
   Widget _header() {
     return AppText(
-      type: AppTextStyles.TITLE,
+      type: AppTextStyle.TITLE,
       text: 'About Me',
       shouldDecorate: true,
     );
@@ -59,11 +29,15 @@ class About extends StatelessWidget {
 
   Widget _image(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(right: ResponsiveDouble(context, 25).value),
-      child: Image(
-        image: AssetImage('hedgehog.png'),
-        width: ResponsiveDouble(context, 225, mobileRatio: 0.33).value,
-        height: ResponsiveDouble(context, 225, mobileRatio: 0.33).value,
+      padding: EdgeInsets.only(
+        right: 25,
+      ),
+      child: SizedBox(
+        width: 225,
+        height: 225,
+        child: ImageLoadingAnimator(
+          imageProvider: NetworkImage(aboutImageUrl),
+        ),
       ),
     );
   }
@@ -82,9 +56,10 @@ class About extends StatelessWidget {
               } else {
                 return Padding(
                   padding: EdgeInsets.symmetric(
-                      vertical: ResponsiveDouble(context, 10).value),
+                    vertical: 10,
+                  ),
                   child: AppText(
-                    type: AppTextStyles.BODY,
+                    type: AppTextStyle.BODY,
                     text: aboutDetails[index],
                   ),
                 );

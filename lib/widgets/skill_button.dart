@@ -4,13 +4,9 @@ import 'package:jlaboll_web/packages/material_states/material_states.dart';
 import 'package:jlaboll_web/widgets/image_loading_animator.dart';
 
 class SkillButton extends StatelessWidget {
-  const SkillButton(
-      {required this.link,
-      required this.localAsset,
-      required this.assetLocation});
+  const SkillButton({required this.link, required this.assetLocation});
 
   final String link;
-  final bool localAsset;
   final String assetLocation;
 
   @override
@@ -32,7 +28,6 @@ class SkillButton extends StatelessWidget {
   }
 
   ImageProvider<Object> _buildImageProvider() {
-    if (localAsset) return AssetImage(assetLocation);
     return NetworkImage(assetLocation);
   }
 }

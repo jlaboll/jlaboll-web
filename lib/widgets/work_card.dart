@@ -19,7 +19,7 @@ class WorkCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.all(15),
+      padding: EdgeInsets.all(50),
       child: FittedBox(
         child: Material(
           borderRadius: BorderRadius.circular(5),
@@ -32,10 +32,16 @@ class WorkCard extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
-              Padding(
-                padding: EdgeInsets.all(5),
-                child: ImageLoadingAnimator(
-                  imageProvider: companyLogoUrl,
+              Container(
+                padding: EdgeInsets.all(
+                  10,
+                ),
+                child: SizedBox(
+                  width: 250,
+                  height: 100,
+                  child: ImageLoadingAnimator(
+                    imageProvider: companyLogoUrl,
+                  ),
                 ),
               ),
               Padding(
@@ -78,26 +84,29 @@ class WorkCard extends StatelessWidget {
                   ],
                 ),
               ),
-              OutlinedButton(
-                style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.resolveWith<Color?>(
-                    (states) {
-                      if (states.contains(MaterialState.pressed)) {
+              Padding(
+                padding: EdgeInsets.all(5),
+                child: OutlinedButton(
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.resolveWith<Color?>(
+                      (states) {
+                        if (states.contains(MaterialState.pressed)) {
+                          return Theme.of(context)
+                              .colorScheme
+                              .tertiary
+                              .withAlpha(127);
+                        }
                         return Theme.of(context)
                             .colorScheme
                             .tertiary
-                            .withAlpha(127);
-                      }
-                      return Theme.of(context)
-                          .colorScheme
-                          .tertiary
-                          .withAlpha(0);
-                    },
+                            .withAlpha(0);
+                      },
+                    ),
                   ),
+                  onPressed: () => launchURL(companyWebsite),
+                  child: Icon(Icons.open_in_new,
+                      color: Theme.of(context).colorScheme.tertiary),
                 ),
-                onPressed: () => launchURL(companyWebsite),
-                child: Icon(Icons.open_in_new,
-                    color: Theme.of(context).colorScheme.tertiary),
               ),
             ],
           ),

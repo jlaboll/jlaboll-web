@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:jlaboll_web/packages/helpers/responsive_double.dart';
 
-enum AppTextStyles {
+enum AppTextStyle {
   TITLE,
   TITLE_SECONDARY,
   SUBTITLE,
@@ -12,7 +11,7 @@ enum AppTextStyles {
 }
 
 class AppText extends StatelessWidget {
-  final AppTextStyles type;
+  final AppTextStyle type;
   final String text;
   final bool shouldBold;
   final bool shouldDecorate;
@@ -26,13 +25,13 @@ class AppText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     switch (type) {
-      case AppTextStyles.TITLE:
+      case AppTextStyle.TITLE:
         return Container(
           child: Text(
             text,
             style: GoogleFonts.nunitoSans(
               textStyle: TextStyle(
-                fontSize: ResponsiveDouble(context, 30).value,
+                fontSize: 30,
                 color: Theme.of(context).colorScheme.onSurface,
                 fontWeight: shouldBold ? FontWeight.bold : FontWeight.w300,
                 decorationThickness: shouldDecorate ? 2 : null,
@@ -46,13 +45,13 @@ class AppText extends StatelessWidget {
             ),
           ),
         );
-      case AppTextStyles.TITLE_SECONDARY:
+      case AppTextStyle.TITLE_SECONDARY:
         return Container(
           child: Text(
             text,
             style: GoogleFonts.nunitoSans(
               textStyle: TextStyle(
-                fontSize: ResponsiveDouble(context, 30).value,
+                fontSize: 30,
                 color: Theme.of(context).colorScheme.secondary,
                 fontWeight: shouldBold ? FontWeight.bold : FontWeight.w300,
                 decorationThickness: shouldDecorate ? 2 : null,
@@ -66,13 +65,13 @@ class AppText extends StatelessWidget {
             ),
           ),
         );
-      case AppTextStyles.SUBTITLE:
+      case AppTextStyle.SUBTITLE:
         return Container(
           child: Text(
             text,
             style: GoogleFonts.nunitoSans(
               textStyle: TextStyle(
-                fontSize: ResponsiveDouble(context, 20).value,
+                fontSize: 20,
                 color: Theme.of(context).colorScheme.onSurface,
                 fontWeight: shouldBold ? FontWeight.bold : FontWeight.w400,
                 decorationThickness: shouldDecorate ? 2 : null,
@@ -86,13 +85,13 @@ class AppText extends StatelessWidget {
             ),
           ),
         );
-      case AppTextStyles.SUBTITLE_SECONDARY:
+      case AppTextStyle.SUBTITLE_SECONDARY:
         return Container(
           child: Text(
             text,
             style: GoogleFonts.nunitoSans(
               textStyle: TextStyle(
-                fontSize: ResponsiveDouble(context, 20).value,
+                fontSize: 20,
                 color: Theme.of(context).colorScheme.secondary,
                 fontWeight: shouldBold ? FontWeight.bold : FontWeight.w400,
                 decorationThickness: shouldDecorate ? 2 : null,
@@ -106,13 +105,13 @@ class AppText extends StatelessWidget {
             ),
           ),
         );
-      case AppTextStyles.BODY:
+      case AppTextStyle.BODY:
         return Container(
           child: Text(
             text,
             style: GoogleFonts.nunitoSans(
               textStyle: TextStyle(
-                fontSize: ResponsiveDouble(context, 15).value,
+                fontSize: 15,
                 color: Theme.of(context).colorScheme.onSurface,
                 fontWeight: shouldBold ? FontWeight.bold : FontWeight.w600,
                 decorationThickness: shouldDecorate ? 2 : null,
@@ -126,13 +125,13 @@ class AppText extends StatelessWidget {
             ),
           ),
         );
-      case AppTextStyles.BODY_SECONDARY:
+      case AppTextStyle.BODY_SECONDARY:
         return Container(
           child: Text(
             text,
             style: GoogleFonts.nunitoSans(
               textStyle: TextStyle(
-                fontSize: ResponsiveDouble(context, 15).value,
+                fontSize: 15,
                 color: Theme.of(context).colorScheme.secondary,
                 fontWeight: shouldBold ? FontWeight.bold : FontWeight.w600,
                 decorationThickness: shouldDecorate ? 2 : null,
