@@ -3,18 +3,21 @@ import 'package:jlaboll_web/classes/screen_item.dart';
 import 'package:jlaboll_web/classes/skill_item.dart';
 import 'package:jlaboll_web/classes/title_item.dart';
 import 'package:jlaboll_web/classes/work_item.dart';
+import 'package:jlaboll_web/packages/components/app_text.dart';
 import 'package:jlaboll_web/screens/desktop/desktop_about.dart';
-import 'package:jlaboll_web/screens/desktop/desktop_home.dart';
 import 'package:jlaboll_web/screens/desktop/desktop_projects.dart';
 import 'package:jlaboll_web/screens/desktop/desktop_skills.dart';
 import 'package:jlaboll_web/screens/desktop/desktop_work.dart';
+import 'package:jlaboll_web/screens/generic_screen.dart';
 import 'package:jlaboll_web/screens/mobile/mobile_about.dart';
-import 'package:jlaboll_web/screens/mobile/mobile_home.dart';
 import 'package:jlaboll_web/screens/mobile/mobile_projects.dart';
 import 'package:jlaboll_web/screens/mobile/mobile_skills.dart';
 import 'package:jlaboll_web/screens/mobile/mobile_work.dart';
 
+import '../../classes/button_item.dart';
 import '../../screens/app_screen.dart';
+import '../../screens/home.dart';
+import '../../widgets/screen_widgets/home_avatar.dart';
 
 const double MOBILE_BREAKPOINT = 280;
 const double TABLET_BREAKPOINT = 800;
@@ -83,30 +86,86 @@ const darkColorScheme = ColorScheme(
   shadow: Color(0xFF000000),
 );
 
+List<Widget> homeChildren = <Widget>[
+  AppText(
+    type: AppTextStyle.SUBTITLE_SECONDARY,
+    text: 'Hey! I am',
+    shouldBold: true,
+  ),
+  AppText(
+    type: AppTextStyle.TITLE,
+    text: 'Jasen LaBolle',
+    shouldBold: true,
+  ),
+  AppText(
+    type: AppTextStyle.SUBTITLE,
+    text: 'Full Stack Developer',
+    shouldBold: true,
+  ),
+  Padding(padding: EdgeInsets.all(10)),
+  HomeAvatar(),
+];
+
+Widget aboutHeader = AppText(
+  type: AppTextStyle.TITLE,
+  text: 'About Me',
+  shouldDecorate: true,
+);
+String aboutImageUrl = 'https://cdn.hedgehogcode.dev/hedgehog.png';
+List<String> aboutDetails = [
+  'I am a Full-Stack Software Developer, graduated December 2020 with a B.S. of Computer Science, and have been working professionally since developing frontend, backend, and devops solutions.',
+  'I have a passion for continuing to learn new technologies and solutions, and I am always excited and interested in expanding my skill set. In my professional career I have worked on desktop, mobile, and web frontend applications, as well as backend REST API\'s, and SQL databases.',
+  'In my free time, I have been working on a bare metal, high availability, on-premises K8\'s deployment, and exploring Flutter as a single codebase, multi-platform application framework.',
+  'I also am a huge fan of hedgehogs, and have a pet hedgehog named Penelope.',
+];
+List<ButtonItem> aboutButtons = <ButtonItem>[
+  ButtonItem(
+    text: 'Contact Me',
+    on_press: () {},
+  ),
+  ButtonItem(
+    text: 'Download Resume',
+    on_press: () {},
+  ),
+];
+
 List<ScreenItem> screens = <ScreenItem>[
   ScreenItem(
-    index: 1,
-    sort_order: 1,
     title: 'Home',
     icon: Icons.home,
-    child: AppScreen(
-      mobileChild: MobileHome(),
-      desktopChild: DesktopHome(),
+    child: GenericScreen(
+      navTitle: 'Home',
+      icon: Icons.home,
+      desktopChild: Home(homeChildren: homeChildren),
+      mobileChild: Home(homeChildren: homeChildren),
+      mobilePadding: EdgeInsets.all(20),
+      desktopPadding: EdgeInsets.all(50),
     ),
   ),
   ScreenItem(
-    index: 2,
-    sort_order: 2,
     title: 'About',
     icon: Icons.info,
-    child: AppScreen(
-      mobileChild: MobileAbout(),
-      desktopChild: DesktopAbout(),
+    child: GenericScreen(
+      navTitle: 'About',
+      icon: Icons.info,
+      mobileChild: MobileAbout(
+        header: aboutHeader,
+        imageUrl: aboutImageUrl,
+        details: aboutDetails,
+        buttons: aboutButtons,
+      ),
+      desktopChild: DesktopAbout(
+        header: aboutHeader,
+        imageUrl: aboutImageUrl,
+        details: aboutDetails,
+        buttons: aboutButtons,
+      ),
+      screenMainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      mobilePadding: EdgeInsets.all(20),
+      desktopPadding: EdgeInsets.all(50),
     ),
   ),
   ScreenItem(
-    index: 3,
-    sort_order: 3,
     title: 'Skills',
     icon: Icons.bolt,
     child: AppScreen(
@@ -115,8 +174,6 @@ List<ScreenItem> screens = <ScreenItem>[
     ),
   ),
   ScreenItem(
-    index: 4,
-    sort_order: 4,
     title: 'Work',
     icon: Icons.work,
     child: AppScreen(
@@ -125,8 +182,6 @@ List<ScreenItem> screens = <ScreenItem>[
     ),
   ),
   ScreenItem(
-    index: 5,
-    sort_order: 5,
     title: 'Projects',
     icon: Icons.code,
     child: AppScreen(
@@ -185,13 +240,6 @@ List<TitleItem> titles = <TitleItem>[
     title: 'Work Experience',
     style: TitleStyle.BOLD_DECORATED_TITLE,
   ),
-];
-
-List<String> aboutDetails = [
-  'I am a Full-Stack Software Developer, graduated December 2020 with a B.S. of Computer Science, and have been working professionally since developing frontend, backend, and devops solutions.',
-  'I have a passion for continuing to learn new technologies and solutions, and I am always excited and interested in expanding my skill set. In my professional career I have worked on desktop, mobile, and web frontend applications, as well as backend REST API\'s, and SQL databases.',
-  'In my free time, I have been working on a bare metal, high availability, on-premises K8\'s deployment, and exploring Flutter as a single codebase, multi-platform application framework.',
-  'I also am a huge fan of hedgehogs, and have a pet hedgehog named Penelope.',
 ];
 
 List<SkillItem> professionalSkillsLanguages = <SkillItem>[
@@ -418,5 +466,4 @@ List<Map<String, String>> personalSkillLinks = [
   },
 ];
 
-String aboutImageUrl = "https://cdn.hedgehogcode.dev/hedgehog.png";
 String homeImageUrl = "https://cdn.hedgehogcode.dev/profile.jpg";
