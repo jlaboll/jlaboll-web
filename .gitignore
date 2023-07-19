@@ -25,3 +25,12 @@ doc/api/
 /lib/generated_plugin_registrant.dart
 /.flutter-plugins
 /.flutter-plugins-dependencies
+
+# Ignore assets
+assets/
+assets/*
+/assets/hedgehog.png
+/assets/omnis_logo.png
+/assets/profile.jpg
+/assets/suranlogon2019.jpg
+/assets/temp.jpeg
