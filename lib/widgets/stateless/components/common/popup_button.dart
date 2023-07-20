@@ -1,30 +1,20 @@
 import 'package:flutter/material.dart';
 
-import '../../../../classes/on_press_opacity.dart';
-import '../../../../classes/rounded_rectangle.dart';
 import '../app/app_text.dart';
 
-class CCPopupCard extends StatelessWidget {
-  CCPopupCard(
-      {required this.child,
+class CCPopupButton extends StatelessWidget {
+  CCPopupButton(
+      {required this.buttonText,
       required this.popupTitle,
       required this.popupChildren});
 
-  final Widget child;
+  final String buttonText;
   final String popupTitle;
   final List<Widget> popupChildren;
 
   @override
   Widget build(BuildContext context) {
-    return FilledButton(
-      style: ButtonStyle(
-        shape: RoundedRectangle(),
-        backgroundColor: OnPressOpacity(
-          colorValue:
-              Theme.of(context).colorScheme.surfaceVariant.withAlpha(127).value,
-          opacity: 0.2,
-        ),
-      ),
+    return ElevatedButton(
       onPressed: () => showDialog(
         context: context,
         builder: (BuildContext context) {
@@ -42,7 +32,7 @@ class CCPopupCard extends StatelessWidget {
           );
         },
       ),
-      child: child,
+      child: Text(buttonText),
     );
   }
 }

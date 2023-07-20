@@ -3,8 +3,9 @@ import 'package:jlaboll_web/widgets/stateless/components/about/about.dart';
 import 'package:jlaboll_web/widgets/stateless/components/app/app_nav_button.dart';
 import 'package:jlaboll_web/widgets/stateless/components/app/app_text.dart';
 import 'package:jlaboll_web/widgets/stateless/components/common/avatar.dart';
-import 'package:jlaboll_web/widgets/stateless/components/common/elevated_button.dart';
+import 'package:jlaboll_web/widgets/stateless/components/common/file_download_button.dart';
 import 'package:jlaboll_web/widgets/stateless/components/common/page.dart';
+import 'package:jlaboll_web/widgets/stateless/components/common/popup_button.dart';
 import 'package:jlaboll_web/widgets/stateless/components/common/quick_link_button.dart';
 import 'package:jlaboll_web/widgets/stateless/components/experience/experience.dart';
 import 'package:jlaboll_web/widgets/stateless/components/experience/work_card.dart';
@@ -111,10 +112,11 @@ List<Breakpoint> kResponsiveBreakpoints = <Breakpoint>[
 // Strings //
 // App
 String kAppTitle = 'Jasen LaBolle';
+String kDefaultMediaUrl = 'https://media.hedgehogcode.dev/';
 
 // Home
 String kHomeNavLabel = 'Home';
-String kHomeAvatarUrl = 'https://cdn.hedgehogcode.dev/profile.jpg';
+String kHomeAvatarUrl = kDefaultMediaUrl + 'profile.jpg';
 String kHomeHeading1 = 'Hey! I am';
 String kHomeHeading2 = 'Jasen LaBolle';
 String kHomeHeading3 = 'Full Stack Developer';
@@ -122,7 +124,7 @@ String kHomeHeading3 = 'Full Stack Developer';
 // About
 String kAboutNavLabel = 'About';
 String kAboutHeading = 'About Me';
-String kAboutImageUrl = 'https://cdn.hedgehogcode.dev/hedgehog.png';
+String kAboutImageUrl = kDefaultMediaUrl + 'hedgehog.png';
 String kAboutButton1 = 'Contact Me';
 String kAboutButton2 = 'Download Resume';
 
@@ -186,19 +188,63 @@ List<Widget> kHomeChildren = <Widget>[
   ),
   Padding(padding: EdgeInsets.all(10)),
   CCAvatar(
-    url: 'https://cdn.hedgehogcode.dev/profile.jpg',
+    url: kDefaultMediaUrl + 'profile.jpg',
   ),
 ];
 
 // About
 List<Widget> kAboutButtons = <Widget>[
-  CCElevatedButton(
+  CCPopupButton(
     buttonText: 'Contact Me',
-    onPress: () {},
+    popupTitle: 'Contact Information',
+    popupChildren: <Widget>[
+      IntrinsicWidth(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 25),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  CAAppText(
+                    type: CAAppTextStyle.BODY,
+                    text: 'Phone:',
+                  ),
+                  CAAppText(
+                    type: CAAppTextStyle.BODY,
+                    text: '(217) 721-7655',
+                  ),
+                ],
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 25),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  CAAppText(
+                    type: CAAppTextStyle.BODY,
+                    text: 'Email:',
+                  ),
+                  CAAppText(
+                    type: CAAppTextStyle.BODY,
+                    text: 'jasenlabolle@gmail.com',
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    ],
   ),
-  CCElevatedButton(
+  CCFileDownloadButton(
     buttonText: 'Download Resume',
-    onPress: () {},
+    fileUrl: kDefaultMediaUrl + 'Jasen_LaBolle.pdf',
   ),
 ];
 
@@ -206,7 +252,7 @@ List<Widget> kAboutButtons = <Widget>[
 List<Widget> kProfessionalSkillsLanguages = <Widget>[
   CSSkillTile(
     skillWebUrl: 'https://www.omnis.net/',
-    skillIconUrl: 'https://cdn.hedgehogcode.dev/omnis.png',
+    skillIconUrl: kDefaultMediaUrl + 'omnis.png',
   ),
   CSSkillTile(
     skillWebUrl: 'https://emberjs.com/',
@@ -353,13 +399,21 @@ List<Widget> kSkillsChildren = <Widget>[
 // Experience
 List<Widget> kExperienceChildren = <Widget>[
   CEWorkCard(
-    imageUrl: 'https://cdn.hedgehogcode.dev/suran.jpg',
+    imageUrl: kDefaultMediaUrl + 'suran.jpg',
     position: 'Full Stack Developer',
     company: 'Suran Systems Inc.',
-    startDate: 'Mar. 15 2021',
+    startDate: 'Mar. 2021',
     endDate: 'Present',
     detailsTitle: 'Responsibilities at Suran Systems',
-    details: <String>['My job...', 'Was cool...', 'Because I...'],
+    details: <String>[
+      'Worked remotely, both collaboratively and independently, in a Agile development cycle',
+      'Developed both front and back end apps/services with automated CI/CD pipelines',
+      'Helped diagnose and resolve issues from a developer, data services, and operations standpoint',
+      'Collaborated in planning major development projects',
+      'Monitored services and performed disaster recovery',
+      'Developed deployment and monitoring solutions for new development',
+      'Collaborated on development changes for PCI compliance',
+    ],
     websiteUrl: 'https://www.suran.com/',
   ),
   CEWorkCard(
@@ -368,19 +422,26 @@ List<Widget> kExperienceChildren = <Widget>[
     position: 'Specialty Sales',
     company: 'Target',
     startDate: 'Sept. 2020',
-    endDate: 'Feb. 2021',
+    endDate: 'Jan. 2021',
     detailsTitle: 'Responsibilities at Target',
-    details: <String>['My job...', 'Was cool...', 'Because I...'],
+    details: <String>[
+      'Worked in a mostly independent environment to serve guests and reach area sales goals',
+      'Gained further information on a variety of products to help in answering guest questions',
+    ],
     websiteUrl: 'https://www.target.com/',
   ),
   CEWorkCard(
     imageUrl: 'https://www.fyxit.net/uploads/4/0/7/4/40746573/png.png',
-    position: 'Manager / Apple Device Specialist',
+    position: 'Manager / Apple Technician',
     company: 'Fyxit Tech Repair and Services',
-    startDate: 'July. 2017',
-    endDate: 'Mar. 2020',
+    startDate: 'July 2017',
+    endDate: 'May 2020',
     detailsTitle: 'Responsibilities at Fyxit',
-    details: <String>['My job...', 'Was cool...', 'Because I...'],
+    details: <String>[
+      'Worked closely in a dynamic environment to solve problems both single handedly and as a team',
+      'Diagnosed issues, priced repairs, contacted customers, and performed repairs on thousands of tickets',
+      'Focused on providing a great customer service experience',
+    ],
     websiteUrl: 'https://www.fyxit.net/',
   ),
 ];
@@ -390,13 +451,34 @@ List<Widget> kProjectsChildren = <Widget>[
   CPProjectCard(
     title: 'Personal Website',
     language: 'Flutter (Dart)',
-    demoScreenshotLink:
-        'https://cdn.hedgehogcode.dev/personal_site_screenshot.png',
+    demoScreenshotLink: kDefaultMediaUrl + 'personal_site_screenshot.png',
     demoLink: 'https://jlabolle.dev',
     repoLink: 'https://github.com/jlaboll/jlaboll-web/tree/main',
     aboutTitle: 'About jlabolle.dev',
     about: <String>[
-      'This is a personal website built on Flutter, and hosted on-premises (my apartment). I learned a lot working on this project, and I specifically enjoyed the challenge of working with a language I was not familiar with previously.'
+      'The goal of this project was to demonstrate front-end development experience, while also supplementing a traditional resume.',
+      'I chose to start the project in Flutter after learning of Flutter\'s ability to build native multi-platform applications in a single codebase.',
+      'I also decided I would host the site on-premises behind a reverse proxy/load balancer as not to conflict with other services on the network.',
+      'I learned a lot working on this project, and have enjoyed returning to it every few months to apply new ideas and refactor areas I feel I can improve.',
+      'This is my longest running project, starting under a different repository and language in 2021, but seeing the most drastic improvements starting Jan. 2023.',
+    ],
+  ),
+  CPProjectCard(
+    title: 'On-Premises Kubernetes Deployment',
+    language: 'Kubernetes / Helm / Bash',
+    demoScreenshotLink: kDefaultMediaUrl + 'kubernetes_space.png',
+    demoLink: 'https://portal.hedgehogcode.dev',
+    repoLink: '',
+    aboutTitle: 'About On-Premises Kubernetes Cluster',
+    about: <String>[
+      'The goal of this project was to deploy a production-level on-premises instance of Jetbrains Space.',
+      'Documentation suggested production-level deployments had to run on Kubernetes, which became the focus of the project from that point.',
+      'I had to build a understanding of Kubernetes from scratch, only being familiar with Docker containers previously.',
+      'After initially exploring cluster initialization with a custom ansible playbook, I ended up initializing with Kubespray.',
+      'Then I again tried my hand at creating deployments on the cluster with Ansible before learning about Helm.',
+      'Once I had settled into a initialization/deployment strategy, I began learning about the different deployments I would need for a Space deployment.',
+      'The tech stack on the cluster currently includes: Traefik, Ceph, Redis, PostgreSQL, ElasticSearch, MinIO, Prometheus, Grafana, and Jetbrains Space.',
+      'This was the most difficult and rewarding project I have worked on for personal use, and I hope to continue utilizing the cluster and refining the existing deployments to provide a container-based solution for all my on-premises projects.'
     ],
   ),
 ];
@@ -470,20 +552,3 @@ List<CCPage> kPages = <CCPage>[
     ),
   ),
 ];
-
-// Image loading shimmer gradient
-// LinearGradient kShimmerGradient = LinearGradient(
-//   colors: [
-//     Color(0xFFEBEBF4),
-//     Color(0xFFF4F4F4),
-//     Color(0xFFEBEBF4),
-//   ],
-//   stops: [
-//     0.1,
-//     0.3,
-//     0.4,
-//   ],
-//   begin: Alignment(-1.0, -0.3),
-//   end: Alignment(1.0, 0.3),
-//   tileMode: TileMode.clamp,
-// );

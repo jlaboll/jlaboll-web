@@ -28,27 +28,16 @@ class CPProjectCard extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.all(12),
       child: CCPopupCard(
-        onPressed: () => showDialog(
-          context: context,
-          builder: (BuildContext context) {
-            return SimpleDialog(
-              title: Center(
-                child: CAAppText(
-                  type: CAAppTextStyle.SUBTITLE,
-                  text: aboutTitle,
-                  shouldDecorate: true,
-                ),
-              ),
-              titlePadding: EdgeInsets.only(top: 12, left: 24, right: 24),
-              children: List.generate(
-                  about.length,
-                  (index) => Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 10),
-                        child: CAAppText(
-                            type: CAAppTextStyle.BODY, text: about[index]),
-                      )),
-            );
-          },
+        popupTitle: aboutTitle,
+        popupChildren: List.generate(
+          about.length,
+          (index) => Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20),
+            child: CAAppText(
+              type: CAAppTextStyle.BODY,
+              text: about[index],
+            ),
+          ),
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -95,10 +84,7 @@ class CPProjectCard extends StatelessWidget {
                                 .tertiary
                                 .withAlpha(127);
                           }
-                          return Theme.of(context)
-                              .colorScheme
-                              .tertiary
-                              .withAlpha(0);
+                          return null;
                         },
                       ),
                     ),
@@ -114,27 +100,44 @@ class CPProjectCard extends StatelessWidget {
                   padding: EdgeInsets.all(5),
                   child: OutlinedButton(
                     style: ButtonStyle(
+                      mouseCursor:
+                          MaterialStateProperty.resolveWith<MouseCursor?>(
+                              (states) => repoLink.isEmpty
+                                  ? SystemMouseCursors.basic
+                                  : null),
+                      overlayColor: MaterialStateProperty.resolveWith<Color?>(
+                        (states) {
+                          if (repoLink.isEmpty) {
+                            return Theme.of(context)
+                                .colorScheme
+                                .surfaceVariant
+                                .withAlpha(0);
+                          }
+                          return null;
+                        },
+                      ),
                       backgroundColor:
                           MaterialStateProperty.resolveWith<Color?>(
                         (states) {
-                          if (states.contains(MaterialState.pressed)) {
+                          if (states.contains(MaterialState.pressed) &&
+                              !repoLink.isEmpty) {
                             return Theme.of(context)
                                 .colorScheme
                                 .tertiary
                                 .withAlpha(127);
                           }
-                          return Theme.of(context)
-                              .colorScheme
-                              .tertiary
-                              .withAlpha(0);
+                          return null;
                         },
                       ),
                     ),
-                    onPressed: () =>
-                        UrlLauncherQuery.of(context).launchURL(repoLink),
+                    onPressed: () => repoLink.isEmpty
+                        ? null
+                        : UrlLauncherQuery.of(context).launchURL(repoLink),
                     child: Icon(
                       Icons.open_in_new,
-                      color: Theme.of(context).colorScheme.tertiary,
+                      color: repoLink.isEmpty
+                          ? Theme.of(context).colorScheme.surfaceVariant
+                          : Theme.of(context).colorScheme.tertiary,
                     ),
                   ),
                 ),
