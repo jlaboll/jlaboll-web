@@ -30,27 +30,16 @@ class CEWorkCard extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.all(12),
       child: CCPopupCard(
-        onPressed: () => showDialog(
-          context: context,
-          builder: (BuildContext context) {
-            return SimpleDialog(
-              title: Center(
-                child: CAAppText(
-                  type: CAAppTextStyle.SUBTITLE,
-                  text: detailsTitle,
-                  shouldDecorate: true,
-                ),
-              ),
-              titlePadding: EdgeInsets.only(top: 12, left: 24, right: 24),
-              children: List.generate(
-                  details.length,
-                  (index) => Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 10),
-                        child: CAAppText(
-                            type: CAAppTextStyle.BODY, text: details[index]),
-                      )),
-            );
-          },
+        popupTitle: detailsTitle,
+        popupChildren: List.generate(
+          details.length,
+          (index) => Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20),
+            child: CAAppText(
+              type: CAAppTextStyle.BODY,
+              text: details[index],
+            ),
+          ),
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
