@@ -31,13 +31,10 @@ class LMobile extends StatelessWidget {
       stackChildren: <Widget>[
         LayoutBuilder(
           builder: (BuildContext context, BoxConstraints constraints) {
-            return Padding(
-              padding: EdgeInsets.all(8),
-              child: ListView(
-                controller: ScrollControllerQuery.controllerOf(context),
-                itemExtent: MediaQuery.of(context).size.height,
-                children: pages,
-              ),
+            return ListView(
+              controller: ScrollControllerQuery.controllerOf(context),
+              itemExtent: constraints.maxHeight,
+              children: pages,
             );
           },
         ),

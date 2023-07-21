@@ -13,6 +13,11 @@ class CAAppDrawerButton extends StatelessWidget implements PreferredSizeWidget {
             child: Padding(
               padding: EdgeInsets.all(10),
               child: OutlinedButton(
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.resolveWith<Color?>(
+                    (states) => Theme.of(context).colorScheme.background,
+                  ),
+                ),
                 onPressed: () => Scaffold.of(context).openDrawer(),
                 child: Center(
                   child: Icon(
