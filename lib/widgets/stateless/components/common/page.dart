@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:jlaboll_web/widgets/inherited/list_view_constraints_query.dart';
+import 'package:responsive_framework/responsive_breakpoints.dart';
 
 class CCPage extends StatelessWidget {
   CCPage({required this.navButton, required this.content});
@@ -9,6 +9,25 @@ class CCPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(padding: ListViewConstraintsQuery.of(context).padding, child: content,);
+    double padding = 0;
+    switch (ResponsiveBreakpoints.of(context).breakpoint.name) {
+      case MOBILE:
+        padding = 8;
+        break;
+      case TABLET:
+        padding = 10;
+        break;
+      case DESKTOP:
+        padding = 12;
+        break;
+      default:
+        padding = 20;
+        break;
+    }
+
+    return Padding(
+      padding: EdgeInsets.all(padding),
+      child: content,
+    );
   }
 }

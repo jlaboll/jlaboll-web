@@ -3,8 +3,9 @@ import 'package:jlaboll_web/widgets/stateless/components/about/about.dart';
 import 'package:jlaboll_web/widgets/stateless/components/app/app_nav_button.dart';
 import 'package:jlaboll_web/widgets/stateless/components/app/app_text.dart';
 import 'package:jlaboll_web/widgets/stateless/components/common/avatar.dart';
-import 'package:jlaboll_web/widgets/stateless/components/common/elevated_button.dart';
+import 'package:jlaboll_web/widgets/stateless/components/common/file_download_button.dart';
 import 'package:jlaboll_web/widgets/stateless/components/common/page.dart';
+import 'package:jlaboll_web/widgets/stateless/components/common/popup_button.dart';
 import 'package:jlaboll_web/widgets/stateless/components/common/quick_link_button.dart';
 import 'package:jlaboll_web/widgets/stateless/components/experience/experience.dart';
 import 'package:jlaboll_web/widgets/stateless/components/experience/work_card.dart';
@@ -14,8 +15,7 @@ import 'package:jlaboll_web/widgets/stateless/components/projects/projects.dart'
 import 'package:jlaboll_web/widgets/stateless/components/skills/skill_tile.dart';
 import 'package:jlaboll_web/widgets/stateless/components/skills/skill_tile_wrap.dart';
 import 'package:jlaboll_web/widgets/stateless/components/skills/skills.dart';
-import 'package:responsive_framework/breakpoint.dart';
-import 'package:responsive_framework/responsive_breakpoints.dart';
+import 'package:responsive_framework/responsive_framework.dart';
 
 // Color Schemes //
 const kLightColorScheme = ColorScheme(
@@ -82,39 +82,39 @@ const kDarkColorScheme = ColorScheme(
 
 // Doubles //
 // App
-const double kScaleWidthMobile = 360;
-const double kScaleWidthTablet = 864;
-const double kScaleWidthDesktop = 1366;
-const double kScaleWidthUHD = 1920;
-
-const double kMinBreakpointMobile = 0;
-const double kMinBreakpointTablet = 451;
-const double kMinBreakpointDesktop = 768;
-const double kMinBreakpointUHD = 1921;
-
-const double kMaxBreakpointMobile = 450;
-const double kMaxBreakpointTablet = 800;
-const double kMaxBreakpointDesktop = 1920;
-const double kMaxBreakpointUHD = double.infinity;
 
 // Responsive Breakpoints //
 List<Breakpoint> kResponsiveBreakpoints = <Breakpoint>[
   const Breakpoint(
-      start: kMinBreakpointMobile, end: kMaxBreakpointMobile, name: MOBILE),
+    start: 0,
+    end: 450,
+    name: MOBILE,
+  ),
   const Breakpoint(
-      start: kMinBreakpointTablet, end: kMaxBreakpointTablet, name: TABLET),
+    start: 451,
+    end: 800,
+    name: TABLET,
+  ),
   const Breakpoint(
-      start: kMinBreakpointDesktop, end: kMaxBreakpointDesktop, name: DESKTOP),
-  const Breakpoint(start: kMinBreakpointUHD, end: kMaxBreakpointUHD, name: '4K')
+    start: 768,
+    end: 1920,
+    name: DESKTOP,
+  ),
+  const Breakpoint(
+    start: 1921,
+    end: double.infinity,
+    name: '4K',
+  ),
 ];
 
 // Strings //
 // App
 String kAppTitle = 'Jasen LaBolle';
+String kDefaultMediaUrl = 'https://media.jlaboll.dev/';
 
 // Home
 String kHomeNavLabel = 'Home';
-String kHomeAvatarUrl = 'https://cdn.hedgehogcode.dev/profile.jpg';
+String kHomeAvatarUrl = kDefaultMediaUrl + 'profile_picture.jpg';
 String kHomeHeading1 = 'Hey! I am';
 String kHomeHeading2 = 'Jasen LaBolle';
 String kHomeHeading3 = 'Full Stack Developer';
@@ -122,7 +122,7 @@ String kHomeHeading3 = 'Full Stack Developer';
 // About
 String kAboutNavLabel = 'About';
 String kAboutHeading = 'About Me';
-String kAboutImageUrl = 'https://cdn.hedgehogcode.dev/hedgehog.png';
+String kAboutImageUrl = kDefaultMediaUrl + 'hedgehog.png';
 String kAboutButton1 = 'Contact Me';
 String kAboutButton2 = 'Download Resume';
 
@@ -186,19 +186,63 @@ List<Widget> kHomeChildren = <Widget>[
   ),
   Padding(padding: EdgeInsets.all(10)),
   CCAvatar(
-    url: 'https://cdn.hedgehogcode.dev/profile.jpg',
+    url: kHomeAvatarUrl,
   ),
 ];
 
 // About
 List<Widget> kAboutButtons = <Widget>[
-  CCElevatedButton(
+  CCPopupButton(
     buttonText: 'Contact Me',
-    onPress: () {},
+    popupTitle: 'Contact Information',
+    popupChildren: <Widget>[
+      IntrinsicWidth(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 25),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  CAAppText(
+                    type: CAAppTextStyle.BODY,
+                    text: 'Phone:',
+                  ),
+                  CAAppText(
+                    type: CAAppTextStyle.BODY,
+                    text: '(217) 721-7655',
+                  ),
+                ],
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 25),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  CAAppText(
+                    type: CAAppTextStyle.BODY,
+                    text: 'Email:',
+                  ),
+                  CAAppText(
+                    type: CAAppTextStyle.BODY,
+                    text: 'jasenlabolle@gmail.com',
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    ],
   ),
-  CCElevatedButton(
+  CCFileDownloadButton(
     buttonText: 'Download Resume',
-    onPress: () {},
+    fileUrl: kDefaultMediaUrl + 'Jasen_LaBolle.pdf',
   ),
 ];
 
@@ -206,51 +250,46 @@ List<Widget> kAboutButtons = <Widget>[
 List<Widget> kProfessionalSkillsLanguages = <Widget>[
   CSSkillTile(
     skillWebUrl: 'https://www.omnis.net/',
-    skillIconUrl: 'https://cdn.hedgehogcode.dev/omnis.png',
+    skillIconUrl: kDefaultMediaUrl + 'omnis.png',
   ),
   CSSkillTile(
     skillWebUrl: 'https://emberjs.com/',
-    skillIconUrl:
-        'https://raw.githubusercontent.com/ember-learn/ember-website/main/public/images/brand/Ember%20Logos/Icon/e-rounded-icon-4c.png',
+    skillIconUrl: kDefaultMediaUrl + 'ember.png',
   ),
   CSSkillTile(
     skillWebUrl: 'https://www.ruby-lang.org/en/',
-    skillIconUrl:
-        'https://img.icons8.com/color/512/ruby-programming-language.png',
+    skillIconUrl: kDefaultMediaUrl + 'ruby.png',
   ),
   CSSkillTile(
     skillWebUrl: 'https://rubyonrails.org/',
-    skillIconUrl: 'https://img.icons8.com/windows/512/ruby-on-rails.png',
+    skillIconUrl: kDefaultMediaUrl + 'rails.png',
   ),
   CSSkillTile(
     skillWebUrl: 'https://www.postgresql.org/',
-    skillIconUrl: 'https://img.icons8.com/color/512/postgreesql.png',
+    skillIconUrl: kDefaultMediaUrl + 'postgresql.png',
   ),
 ];
 
 List<Widget> kProfessionalSkillsInfrastructure = <Widget>[
   CSSkillTile(
     skillWebUrl: 'https://www.nginx.com/',
-    skillIconUrl: 'https://img.icons8.com/color/512/nginx.png',
+    skillIconUrl: kDefaultMediaUrl + 'nginx.png',
   ),
   CSSkillTile(
     skillWebUrl: 'https://www.jenkins.io/',
-    skillIconUrl: 'https://img.icons8.com/color/512/jenkins.png',
+    skillIconUrl: kDefaultMediaUrl + 'jenkins.png',
   ),
   CSSkillTile(
     skillWebUrl: 'https://docs.saltproject.io/en/latest/contents.html',
-    skillIconUrl:
-        'https://cdn.icon-icons.com/icons2/2389/PNG/512/saltstack_logo_icon_144913.png',
+    skillIconUrl: kDefaultMediaUrl + 'saltstack.png',
   ),
   CSSkillTile(
     skillWebUrl: 'https://www.rundeck.com/',
-    skillIconUrl:
-        'https://cdn.icon-icons.com/icons2/2699/PNG/512/rundeck_logo_icon_170767.png',
+    skillIconUrl: kDefaultMediaUrl + 'rundeck.png',
   ),
   CSSkillTile(
     skillWebUrl: 'https://www.nagios.org/',
-    skillIconUrl:
-        'https://cdn.icon-icons.com/icons2/2699/PNG/512/nagios_logo_icon_169936.png',
+    skillIconUrl: kDefaultMediaUrl + 'nagios.png',
   ),
 ];
 
@@ -261,74 +300,65 @@ List<Widget> kProfessionalSkillsTools = <Widget>[
   ),
   CSSkillTile(
     skillWebUrl: 'https://www.atlassian.com/software/jira/',
-    skillIconUrl: 'https://img.icons8.com/color/512/jira.png',
+    skillIconUrl: kDefaultMediaUrl + 'jira.png',
   ),
   CSSkillTile(
     skillWebUrl: 'https://www.jetbrains.com/idea/',
-    skillIconUrl: 'https://img.icons8.com/color/512/intellij-idea.png',
+    skillIconUrl: kDefaultMediaUrl + 'intellij.png',
   ),
   CSSkillTile(
     skillWebUrl: 'https://visualstudio.microsoft.com/',
-    skillIconUrl: 'https://img.icons8.com/color/512/visual-studio.png',
+    skillIconUrl: kDefaultMediaUrl + 'visual_studio.png',
   ),
   CSSkillTile(
     skillWebUrl: 'https://git-scm.com/',
-    skillIconUrl: 'https://img.icons8.com/color/512/git.png',
+    skillIconUrl: kDefaultMediaUrl + 'git.png',
   ),
 ];
 
 List<Widget> kOtherSkillsLanguages = <Widget>[
   CSSkillTile(
     skillWebUrl: 'https://flutter.dev/',
-    skillIconUrl:
-        'https://static-00.iconduck.com/assets.00/flutter-icon-1651x2048-ojswpayr.png',
+    skillIconUrl: kDefaultMediaUrl + 'flutter.png',
   ),
   CSSkillTile(
     skillWebUrl: 'https://dev.java/',
-    skillIconUrl: 'https://cdn-icons-png.flaticon.com/512/5968/5968282.png',
+    skillIconUrl: kDefaultMediaUrl + 'java.png',
   ),
   CSSkillTile(
     skillWebUrl: 'https://www.mysql.com/',
-    skillIconUrl:
-        'https://cdn.iconscout.com/icon/free/png-256/free-mysql-21-1174941.png?f=webp',
+    skillIconUrl: kDefaultMediaUrl + 'mysql.webp',
   ),
   CSSkillTile(
     skillWebUrl: 'https://learn.microsoft.com/en-us/cpp/cpp/',
-    skillIconUrl:
-        'https://user-images.githubusercontent.com/42747200/46140125-da084900-c26d-11e8-8ea7-c45ae6306309.png',
+    skillIconUrl: kDefaultMediaUrl + 'cpp.png',
   ),
   CSSkillTile(
     skillWebUrl: 'https://react.dev/',
-    skillIconUrl:
-        'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/1150px-React-icon.svg.png',
+    skillIconUrl: kDefaultMediaUrl + 'react.png',
   ),
 ];
 
 List<Widget> kOtherSkillsInfrastructure = <Widget>[
   CSSkillTile(
     skillWebUrl: 'https://kubernetes.io/',
-    skillIconUrl:
-        'https://upload.wikimedia.org/wikipedia/labs/thumb/b/ba/Kubernetes-icon-color.svg/2110px-Kubernetes-icon-color.svg.png',
+    skillIconUrl: kDefaultMediaUrl + 'kubernetes.png',
   ),
   CSSkillTile(
     skillWebUrl: 'https://www.docker.com/',
-    skillIconUrl:
-        'https://www.docker.com/wp-content/uploads/2022/03/vertical-logo-monochromatic.png',
+    skillIconUrl: kDefaultMediaUrl + 'docker.webp',
   ),
   CSSkillTile(
     skillWebUrl: 'https://www.haproxy.com/',
-    skillIconUrl:
-        'https://cdn.icon-icons.com/icons2/2699/PNG/512/haproxy_logo_icon_171017.png',
+    skillIconUrl: kDefaultMediaUrl + 'haproxy.png',
   ),
   CSSkillTile(
     skillWebUrl: 'https://www.ansible.com/',
-    skillIconUrl:
-        'https://cdn.icon-icons.com/icons2/2148/PNG/512/ansible_icon_132595.png',
+    skillIconUrl: kDefaultMediaUrl + 'ansible.png',
   ),
   CSSkillTile(
     skillWebUrl: 'https://developer.hashicorp.com/terraform/intro',
-    skillIconUrl:
-        'https://static-00.iconduck.com/assets.00/file-type-terraform-icon-455x512-csyun60o.png',
+    skillIconUrl: kDefaultMediaUrl + 'terraform.png',
   ),
 ];
 
@@ -353,34 +383,48 @@ List<Widget> kSkillsChildren = <Widget>[
 // Experience
 List<Widget> kExperienceChildren = <Widget>[
   CEWorkCard(
-    imageUrl: 'https://cdn.hedgehogcode.dev/suran.jpg',
+    imageUrl: kDefaultMediaUrl + 'suran.jpg',
     position: 'Full Stack Developer',
     company: 'Suran Systems Inc.',
-    startDate: 'Mar. 15 2021',
+    startDate: 'Mar. 2021',
     endDate: 'Present',
     detailsTitle: 'Responsibilities at Suran Systems',
-    details: <String>['My job...', 'Was cool...', 'Because I...'],
+    details: <String>[
+      'Worked remotely, both collaboratively and independently, in a Agile development cycle',
+      'Developed both front and back end apps/services with automated CI/CD pipelines',
+      'Helped diagnose and resolve issues from a developer, data services, and operations standpoint',
+      'Collaborated in planning major development projects',
+      'Monitored services and performed disaster recovery',
+      'Developed deployment and monitoring solutions for new development',
+      'Collaborated on development changes for PCI compliance',
+    ],
     websiteUrl: 'https://www.suran.com/',
   ),
   CEWorkCard(
-    imageUrl:
-        'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Target_%282018%29.svg/800px-Target_%282018%29.svg.png',
+    imageUrl: kDefaultMediaUrl + 'target.png',
     position: 'Specialty Sales',
     company: 'Target',
     startDate: 'Sept. 2020',
-    endDate: 'Feb. 2021',
+    endDate: 'Jan. 2021',
     detailsTitle: 'Responsibilities at Target',
-    details: <String>['My job...', 'Was cool...', 'Because I...'],
+    details: <String>[
+      'Worked in a mostly independent environment to serve guests and reach area sales goals',
+      'Gained further information on a variety of products to help in answering guest questions',
+    ],
     websiteUrl: 'https://www.target.com/',
   ),
   CEWorkCard(
-    imageUrl: 'https://www.fyxit.net/uploads/4/0/7/4/40746573/png.png',
-    position: 'Manager / Apple Device Specialist',
+    imageUrl: kDefaultMediaUrl + 'fyxit.png',
+    position: 'Manager / Apple Technician',
     company: 'Fyxit Tech Repair and Services',
-    startDate: 'July. 2017',
-    endDate: 'Mar. 2020',
+    startDate: 'July 2017',
+    endDate: 'May 2020',
     detailsTitle: 'Responsibilities at Fyxit',
-    details: <String>['My job...', 'Was cool...', 'Because I...'],
+    details: <String>[
+      'Worked closely in a dynamic environment to solve problems both single handedly and as a team',
+      'Diagnosed issues, priced repairs, contacted customers, and performed repairs on thousands of tickets',
+      'Focused on providing a great customer service experience',
+    ],
     websiteUrl: 'https://www.fyxit.net/',
   ),
 ];
@@ -390,13 +434,34 @@ List<Widget> kProjectsChildren = <Widget>[
   CPProjectCard(
     title: 'Personal Website',
     language: 'Flutter (Dart)',
-    demoScreenshotLink:
-        'https://cdn.hedgehogcode.dev/personal_site_screenshot.png',
+    demoScreenshotLink: kDefaultMediaUrl + 'personal_site_screenshot.png',
     demoLink: 'https://jlabolle.dev',
     repoLink: 'https://github.com/jlaboll/jlaboll-web/tree/main',
     aboutTitle: 'About jlabolle.dev',
     about: <String>[
-      'This is a personal website built on Flutter, and hosted on-premises (my apartment). I learned a lot working on this project, and I specifically enjoyed the challenge of working with a language I was not familiar with previously.'
+      'The goal of this project was to demonstrate front-end development experience, while also supplementing a traditional resume.',
+      'I chose to start the project in Flutter after learning of Flutter\'s ability to build native multi-platform applications in a single codebase.',
+      'I also decided I would host the site on-premises behind a reverse proxy/load balancer as not to conflict with other services on the network.',
+      'I learned a lot working on this project, and have enjoyed returning to it every few months to apply new ideas and refactor areas I feel I can improve.',
+      'This is my longest running project, starting under a different repository and language in 2021, but seeing the most drastic improvements starting Jan. 2023.',
+    ],
+  ),
+  CPProjectCard(
+    title: 'On-Premises Kubernetes Deployment',
+    language: 'Kubernetes / Helm / Bash',
+    demoScreenshotLink: kDefaultMediaUrl + 'kubernetes_space.png',
+    demoLink: 'https://portal.hedgehogcode.dev',
+    repoLink: '',
+    aboutTitle: 'About On-Premises Kubernetes Cluster',
+    about: <String>[
+      'The goal of this project was to deploy a production-level on-premises instance of Jetbrains Space.',
+      'Documentation suggested production-level deployments had to run on Kubernetes, which became the focus of the project from that point.',
+      'I had to build a understanding of Kubernetes from scratch, only being familiar with Docker containers previously.',
+      'After initially exploring cluster initialization with a custom ansible playbook, I ended up initializing with Kubespray.',
+      'Then I again tried my hand at creating deployments on the cluster with Ansible before learning about Helm.',
+      'Once I had settled into a initialization/deployment strategy, I began learning about the different deployments I would need for a Space deployment.',
+      'The tech stack on the cluster currently includes: Traefik, Ceph, Redis, PostgreSQL, ElasticSearch, MinIO, Prometheus, Grafana, and Jetbrains Space.',
+      'This was the most difficult and rewarding project I have worked on for personal use, and I hope to continue utilizing the cluster and refining the existing deployments to provide a container-based solution for all my on-premises projects.'
     ],
   ),
 ];
@@ -405,11 +470,11 @@ List<Widget> kProjectsChildren = <Widget>[
 List<Widget> kQuickLinks = <Widget>[
   CCQuickLinkButton(
     url: 'https://github.com/jlaboll',
-    iconUrl: 'https://img.icons8.com/fluent/50/000000/github.png',
+    iconUrl: kDefaultMediaUrl + 'github_icon.png',
   ),
   CCQuickLinkButton(
       url: 'https://www.linkedin.com/in/jasen-labolle-7a57221a0',
-      iconUrl: 'https://img.icons8.com/fluent/50/000000/linkedin.png'),
+      iconUrl: kDefaultMediaUrl + 'linkedin_icon.png'),
 ];
 
 List<CCPage> kPages = <CCPage>[
@@ -470,20 +535,3 @@ List<CCPage> kPages = <CCPage>[
     ),
   ),
 ];
-
-// Image loading shimmer gradient
-// LinearGradient kShimmerGradient = LinearGradient(
-//   colors: [
-//     Color(0xFFEBEBF4),
-//     Color(0xFFF4F4F4),
-//     Color(0xFFEBEBF4),
-//   ],
-//   stops: [
-//     0.1,
-//     0.3,
-//     0.4,
-//   ],
-//   begin: Alignment(-1.0, -0.3),
-//   end: Alignment(1.0, 0.3),
-//   tileMode: TileMode.clamp,
-// );

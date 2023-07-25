@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:responsive_framework/responsive_breakpoints.dart';
 
 enum CAAppTextStyle {
   TITLE,
@@ -24,6 +25,32 @@ class CAAppText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double titleFontSize = 0;
+    double subTitleFontSize = 0;
+    double bodyFontSize = 0;
+    switch (ResponsiveBreakpoints.of(context).breakpoint.name) {
+      case MOBILE:
+        titleFontSize = 20;
+        subTitleFontSize = 15;
+        bodyFontSize = 10;
+        break;
+      case TABLET:
+        titleFontSize = 25;
+        subTitleFontSize = 17;
+        bodyFontSize = 12;
+        break;
+      case DESKTOP:
+        titleFontSize = 30;
+        subTitleFontSize = 20;
+        bodyFontSize = 15;
+        break;
+      default:
+        titleFontSize = 35;
+        subTitleFontSize = 22;
+        bodyFontSize = 18;
+        break;
+    }
+
     switch (type) {
       case CAAppTextStyle.TITLE:
         return Container(
@@ -31,7 +58,7 @@ class CAAppText extends StatelessWidget {
             text,
             style: GoogleFonts.nunitoSans(
               textStyle: TextStyle(
-                fontSize: 30,
+                fontSize: titleFontSize,
                 color: Theme.of(context).colorScheme.onSurface,
                 fontWeight: shouldBold ? FontWeight.bold : FontWeight.w300,
                 decorationThickness: shouldDecorate ? 2 : null,
@@ -51,7 +78,7 @@ class CAAppText extends StatelessWidget {
             text,
             style: GoogleFonts.nunitoSans(
               textStyle: TextStyle(
-                fontSize: 30,
+                fontSize: titleFontSize,
                 color: Theme.of(context).colorScheme.secondary,
                 fontWeight: shouldBold ? FontWeight.bold : FontWeight.w300,
                 decorationThickness: shouldDecorate ? 2 : null,
@@ -71,7 +98,7 @@ class CAAppText extends StatelessWidget {
             text,
             style: GoogleFonts.nunitoSans(
               textStyle: TextStyle(
-                fontSize: 20,
+                fontSize: subTitleFontSize,
                 color: Theme.of(context).colorScheme.onSurface,
                 fontWeight: shouldBold ? FontWeight.bold : FontWeight.w400,
                 decorationThickness: shouldDecorate ? 2 : null,
@@ -91,7 +118,7 @@ class CAAppText extends StatelessWidget {
             text,
             style: GoogleFonts.nunitoSans(
               textStyle: TextStyle(
-                fontSize: 20,
+                fontSize: subTitleFontSize,
                 color: Theme.of(context).colorScheme.secondary,
                 fontWeight: shouldBold ? FontWeight.bold : FontWeight.w400,
                 decorationThickness: shouldDecorate ? 2 : null,
@@ -111,7 +138,7 @@ class CAAppText extends StatelessWidget {
             text,
             style: GoogleFonts.nunitoSans(
               textStyle: TextStyle(
-                fontSize: 15,
+                fontSize: bodyFontSize,
                 color: Theme.of(context).colorScheme.onSurface,
                 fontWeight: shouldBold ? FontWeight.bold : FontWeight.w600,
                 decorationThickness: shouldDecorate ? 2 : null,
@@ -131,7 +158,7 @@ class CAAppText extends StatelessWidget {
             text,
             style: GoogleFonts.nunitoSans(
               textStyle: TextStyle(
-                fontSize: 15,
+                fontSize: bodyFontSize,
                 color: Theme.of(context).colorScheme.secondary,
                 fontWeight: shouldBold ? FontWeight.bold : FontWeight.w600,
                 decorationThickness: shouldDecorate ? 2 : null,

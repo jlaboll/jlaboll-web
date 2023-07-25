@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:jlaboll_web/widgets/stateless/components/app/app_text.dart';
 import 'package:jlaboll_web/widgets/stateless/components/common/popup_card.dart';
+import 'package:responsive_framework/responsive_breakpoints.dart';
 
 import '../../../inherited/url_launcher_query.dart';
 import '../common/image_animator.dart';
@@ -27,46 +28,56 @@ class CEWorkCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double padding = 0;
+    Size imageSize;
+    switch (ResponsiveBreakpoints.of(context).breakpoint.name) {
+      case MOBILE:
+        padding = 9;
+        imageSize = Size(150, 50);
+        break;
+      case TABLET:
+        padding = 11;
+        imageSize = Size(180, 60);
+        break;
+      case DESKTOP:
+        padding = 13;
+        imageSize = Size(250, 75);
+        break;
+      default:
+        padding = 15;
+        imageSize = Size(300, 100);
+        break;
+    }
+
     return Padding(
-      padding: EdgeInsets.all(12),
+      padding: EdgeInsets.all(padding),
       child: CCPopupCard(
-        onPressed: () => showDialog(
-          context: context,
-          builder: (BuildContext context) {
-            return SimpleDialog(
-              title: Center(
-                child: CAAppText(
-                  type: CAAppTextStyle.SUBTITLE,
-                  text: detailsTitle,
-                  shouldDecorate: true,
-                ),
-              ),
-              titlePadding: EdgeInsets.only(top: 12, left: 24, right: 24),
-              children: List.generate(
-                  details.length,
-                  (index) => Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 10),
-                        child: CAAppText(
-                            type: CAAppTextStyle.BODY, text: details[index]),
-                      )),
-            );
-          },
+        popupTitle: detailsTitle,
+        popupChildren: List.generate(
+          details.length,
+          (index) => Padding(
+            padding: EdgeInsets.symmetric(horizontal: padding * 2),
+            child: CAAppText(
+              type: CAAppTextStyle.BODY,
+              text: details[index],
+            ),
+          ),
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             Container(
-              padding: EdgeInsets.all(10),
+              padding: EdgeInsets.all(padding / 2),
               child: SizedBox(
-                width: 250,
-                height: 75,
+                width: imageSize.width,
+                height: imageSize.height,
                 child: CCImageAnimator(provider: NetworkImage(imageUrl)),
               ),
             ),
             Expanded(
               child: Padding(
-                padding: EdgeInsets.all(10),
+                padding: EdgeInsets.all(padding / 2),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -82,7 +93,7 @@ class CEWorkCard extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: EdgeInsets.all(5),
+              padding: EdgeInsets.all(padding / 4),
               child: OutlinedButton(
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.resolveWith<Color?>(

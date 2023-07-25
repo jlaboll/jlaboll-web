@@ -10,12 +10,22 @@ class ScrollControllerQuery extends InheritedWidget {
     return context.dependOnInheritedWidgetOfExactType<ScrollControllerQuery>();
   }
 
-  static ScrollController of(BuildContext context) {
+  static ScrollControllerQuery of(BuildContext context) {
     final ScrollControllerQuery? result = maybeOf(context);
     assert(result != null, 'No ScrollControllerQuery found in context');
-    return context
-        .dependOnInheritedWidgetOfExactType<ScrollControllerQuery>()!
-        .scrollController;
+    return context.dependOnInheritedWidgetOfExactType<ScrollControllerQuery>()!;
+  }
+
+  static ScrollController controllerOf(BuildContext context) {
+    return ScrollControllerQuery.of(context).scrollController;
+  }
+
+  void scrollTo(int index, double scrollDistance) {
+    scrollController.animateTo(
+      index * scrollDistance,
+      duration: const Duration(milliseconds: 500),
+      curve: Curves.ease,
+    );
   }
 
   @override

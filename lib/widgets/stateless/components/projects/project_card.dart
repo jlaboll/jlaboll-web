@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:responsive_framework/responsive_breakpoints.dart';
 
 import '../../../inherited/url_launcher_query.dart';
 import '../app/app_text.dart';
@@ -25,39 +26,49 @@ class CPProjectCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double padding = 0;
+    double imageSize;
+    switch (ResponsiveBreakpoints.of(context).breakpoint.name) {
+      case MOBILE:
+        padding = 9;
+        imageSize = 150;
+        break;
+      case TABLET:
+        padding = 11;
+        imageSize = 180;
+        break;
+      case DESKTOP:
+        padding = 13;
+        imageSize = 250;
+        break;
+      default:
+        padding = 15;
+        imageSize = 300;
+        break;
+    }
+
     return Padding(
-      padding: EdgeInsets.all(12),
+      padding: EdgeInsets.all(padding),
       child: CCPopupCard(
-        onPressed: () => showDialog(
-          context: context,
-          builder: (BuildContext context) {
-            return SimpleDialog(
-              title: Center(
-                child: CAAppText(
-                  type: CAAppTextStyle.SUBTITLE,
-                  text: aboutTitle,
-                  shouldDecorate: true,
-                ),
-              ),
-              titlePadding: EdgeInsets.only(top: 12, left: 24, right: 24),
-              children: List.generate(
-                  about.length,
-                  (index) => Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 10),
-                        child: CAAppText(
-                            type: CAAppTextStyle.BODY, text: about[index]),
-                      )),
-            );
-          },
+        popupTitle: aboutTitle,
+        popupChildren: List.generate(
+          about.length,
+          (index) => Padding(
+            padding: EdgeInsets.symmetric(horizontal: padding * 2),
+            child: CAAppText(
+              type: CAAppTextStyle.BODY,
+              text: about[index],
+            ),
+          ),
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             Container(
-              padding: EdgeInsets.all(10),
+              padding: EdgeInsets.all(padding / 2),
               child: SizedBox(
-                width: 250,
+                width: imageSize,
                 child: CCImageAnimator(
                   provider: NetworkImage(demoScreenshotLink),
                 ),
@@ -65,7 +76,7 @@ class CPProjectCard extends StatelessWidget {
             ),
             Expanded(
               child: Padding(
-                padding: EdgeInsets.all(10),
+                padding: EdgeInsets.all(padding / 2),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -83,7 +94,7 @@ class CPProjectCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
                 Padding(
-                  padding: EdgeInsets.all(5),
+                  padding: EdgeInsets.all(padding / 4),
                   child: OutlinedButton(
                     style: ButtonStyle(
                       backgroundColor:
@@ -95,10 +106,7 @@ class CPProjectCard extends StatelessWidget {
                                 .tertiary
                                 .withAlpha(127);
                           }
-                          return Theme.of(context)
-                              .colorScheme
-                              .tertiary
-                              .withAlpha(0);
+                          return null;
                         },
                       ),
                     ),
@@ -111,30 +119,47 @@ class CPProjectCard extends StatelessWidget {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.all(5),
+                  padding: EdgeInsets.all(padding / 4),
                   child: OutlinedButton(
                     style: ButtonStyle(
+                      mouseCursor:
+                          MaterialStateProperty.resolveWith<MouseCursor?>(
+                              (states) => repoLink.isEmpty
+                                  ? SystemMouseCursors.basic
+                                  : null),
+                      overlayColor: MaterialStateProperty.resolveWith<Color?>(
+                        (states) {
+                          if (repoLink.isEmpty) {
+                            return Theme.of(context)
+                                .colorScheme
+                                .surfaceVariant
+                                .withAlpha(0);
+                          }
+                          return null;
+                        },
+                      ),
                       backgroundColor:
                           MaterialStateProperty.resolveWith<Color?>(
                         (states) {
-                          if (states.contains(MaterialState.pressed)) {
+                          if (states.contains(MaterialState.pressed) &&
+                              !repoLink.isEmpty) {
                             return Theme.of(context)
                                 .colorScheme
                                 .tertiary
                                 .withAlpha(127);
                           }
-                          return Theme.of(context)
-                              .colorScheme
-                              .tertiary
-                              .withAlpha(0);
+                          return null;
                         },
                       ),
                     ),
-                    onPressed: () =>
-                        UrlLauncherQuery.of(context).launchURL(repoLink),
+                    onPressed: () => repoLink.isEmpty
+                        ? null
+                        : UrlLauncherQuery.of(context).launchURL(repoLink),
                     child: Icon(
                       Icons.open_in_new,
-                      color: Theme.of(context).colorScheme.tertiary,
+                      color: repoLink.isEmpty
+                          ? Theme.of(context).colorScheme.surfaceVariant
+                          : Theme.of(context).colorScheme.tertiary,
                     ),
                   ),
                 ),
