@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:responsive_framework/responsive_breakpoints.dart';
 
 import '../../../../classes/on_press_opacity.dart';
 import '../../../../classes/rounded_rectangle.dart';
@@ -16,6 +17,22 @@ class CCPopupCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double padding = 0;
+    switch (ResponsiveBreakpoints.of(context).breakpoint.name) {
+      case MOBILE:
+        padding = 3;
+        break;
+      case TABLET:
+        padding = 4;
+        break;
+      case DESKTOP:
+        padding = 5;
+        break;
+      default:
+        padding = 7;
+        break;
+    }
+
     return FilledButton(
       style: ButtonStyle(
         shape: RoundedRectangle(),
@@ -36,8 +53,11 @@ class CCPopupCard extends StatelessWidget {
                 shouldDecorate: true,
               ),
             ),
-            titlePadding:
-                EdgeInsets.only(top: 12, left: 24, right: 24, bottom: 6),
+            titlePadding: EdgeInsets.only(
+                top: padding * 2,
+                left: padding * 4,
+                right: padding * 4,
+                bottom: padding),
             children: popupChildren,
           );
         },

@@ -19,15 +19,36 @@ class CAbAbout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double padding = 0;
+    double imageWidth = 0;
+    switch (ResponsiveBreakpoints.of(context).breakpoint.name) {
+      case MOBILE:
+        padding = 20;
+        imageWidth = 140;
+        break;
+      case TABLET:
+        padding = 30;
+        imageWidth = 160;
+        break;
+      case DESKTOP:
+        padding = 40;
+        imageWidth = 225;
+        break;
+      default:
+        padding = 50;
+        imageWidth = 260;
+        break;
+    }
+
     return CCTitledView(
       title: title,
       child: Container(
         child: LayoutBuilder(
           builder: (BuildContext context, BoxConstraints constraints) {
             if (ResponsiveBreakpoints.of(context).largerThan(TABLET)) {
-              return _horizontalAxis();
+              return _horizontalAxis(padding, imageWidth);
             } else {
-              return _verticalAxis();
+              return _verticalAxis(padding, imageWidth);
             }
           },
         ),
@@ -35,11 +56,11 @@ class CAbAbout extends StatelessWidget {
     );
   }
 
-  Widget _imageContainer() {
+  Widget _imageContainer(double padding, double imageWidth) {
     return Container(
-      padding: EdgeInsets.all(25),
+      padding: EdgeInsets.all(padding),
       child: SizedBox(
-        width: 225,
+        width: imageWidth,
         child: CCImageAnimator(
           provider: NetworkImage(imageUrl),
         ),
@@ -47,7 +68,7 @@ class CAbAbout extends StatelessWidget {
     );
   }
 
-  Widget _listBuilder(Widget buttonChild) {
+  Widget _listBuilder(Widget buttonChild, double padding) {
     return Expanded(
       child: Container(
         child: Column(
@@ -65,7 +86,7 @@ class CAbAbout extends StatelessWidget {
                 );
               } else {
                 return Padding(
-                  padding: EdgeInsets.symmetric(vertical: 10),
+                  padding: EdgeInsets.symmetric(vertical: padding / 2),
                   child: CAAppText(
                     type: CAAppTextStyle.BODY,
                     text: details[index],
@@ -79,50 +100,50 @@ class CAbAbout extends StatelessWidget {
     );
   }
 
-  Widget _verticalAxisListButtonChild() {
+  Widget _verticalAxisListButtonChild(double padding) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: List.generate(
         buttons.length,
         (index) => Padding(
-          padding: EdgeInsets.all(5),
+          padding: EdgeInsets.all(padding / 4),
           child: buttons[index],
         ),
       ),
     );
   }
 
-  Widget _horizontalAxisListButtonChild() {
+  Widget _horizontalAxisListButtonChild(double padding) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: List.generate(
         buttons.length,
         (index) => Padding(
-          padding: EdgeInsets.all(5),
+          padding: EdgeInsets.all(padding / 4),
           child: buttons[index],
         ),
       ),
     );
   }
 
-  Widget _verticalAxis() {
+  Widget _verticalAxis(double padding, double imageWidth) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
-        _imageContainer(),
-        _listBuilder(_verticalAxisListButtonChild())
+        _imageContainer(padding, imageWidth),
+        _listBuilder(_verticalAxisListButtonChild(padding), padding),
       ],
     );
   }
 
-  Widget _horizontalAxis() {
+  Widget _horizontalAxis(double padding, double imageWidth) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
-        _imageContainer(),
-        _listBuilder(_horizontalAxisListButtonChild())
+        _imageContainer(padding, imageWidth),
+        _listBuilder(_horizontalAxisListButtonChild(padding), padding),
       ],
     );
   }

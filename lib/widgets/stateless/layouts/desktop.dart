@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:jlaboll_web/widgets/inherited/list_view_constraints_query.dart';
 import 'package:jlaboll_web/widgets/stateless/components/app/app_nav_bar.dart';
 import 'package:jlaboll_web/widgets/stateless/components/common/quick_link_bar.dart';
 import 'package:jlaboll_web/widgets/stateless/layouts/sidebar.dart';
@@ -17,9 +16,13 @@ class LDesktop extends StatelessWidget {
   Widget build(BuildContext context) {
     return LSidebar(
       stackChildren: <Widget>[
-        ListViewConstraintsQuery.of(context).getListView(
-          pages,
-          ScrollControllerQuery.of(context),
+        Padding(
+          padding: EdgeInsets.only(left: kToolbarHeight),
+          child: ListView(
+            controller: ScrollControllerQuery.controllerOf(context),
+            itemExtent: MediaQuery.of(context).size.height,
+            children: pages,
+          ),
         ),
         CAAppNavBar(
           children: List.generate(
