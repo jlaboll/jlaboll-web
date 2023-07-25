@@ -22,7 +22,6 @@ doc/api/
 
 # Ignore IDE directory/files
 .idea/
-/lib/generated_plugin_registrant.dart
 /.flutter-plugins
 /.flutter-plugins-dependencies
 

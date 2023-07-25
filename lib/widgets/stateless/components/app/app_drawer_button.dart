@@ -5,16 +5,26 @@ class CAAppDrawerButton extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return PreferredSize(
       child: Material(
-        color: Theme.of(context).colorScheme.background,
+        color: Theme.of(context).colorScheme.background.withOpacity(0),
         child: Align(
           alignment: Alignment.centerLeft,
-          child: SizedBox.square(
-            dimension: kToolbarHeight,
-            child: OutlinedButton(
-              onPressed: () => Scaffold.of(context).openDrawer(),
-              child: Icon(
-                Icons.view_headline,
-                color: Theme.of(context).colorScheme.onBackground,
+          child: FittedBox(
+            fit: BoxFit.contain,
+            child: Padding(
+              padding: EdgeInsets.all(10),
+              child: OutlinedButton(
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.resolveWith<Color?>(
+                    (states) => Theme.of(context).colorScheme.background,
+                  ),
+                ),
+                onPressed: () => Scaffold.of(context).openDrawer(),
+                child: Center(
+                  child: Icon(
+                    Icons.view_headline,
+                    color: Theme.of(context).colorScheme.onBackground,
+                  ),
+                ),
               ),
             ),
           ),
