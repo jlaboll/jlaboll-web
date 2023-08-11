@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:jlaboll_web/widgets/inherited/scroll_controller_query.dart';
 
-import '../../../../classes/simple_responsive_value.dart';
+import '../../../inherited/responsive_padding_query.dart';
 
 class CCDrawerNavButton extends StatelessWidget {
   CCDrawerNavButton(
@@ -13,14 +13,12 @@ class CCDrawerNavButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double padding = SimpleResponsiveValue<double>(context, 5, 7, 9, 13).value;
-
     return Padding(
-      padding: EdgeInsets.all(padding),
+      padding: EdgeInsets.all(ResponsivePaddingQuery.padding(context, "SMALL")),
       child: ListTile(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.all(
-            Radius.circular(padding),
+            Radius.circular(ResponsivePaddingQuery.padding(context, "SMALL")),
           ),
         ),
         tileColor: Theme.of(context).colorScheme.onPrimaryContainer,
@@ -31,9 +29,8 @@ class CCDrawerNavButton extends StatelessWidget {
         onTap: () {
           Scaffold.of(context).closeDrawer();
           ScrollControllerQuery.of(context).scrollTo(
-            index,
-            MediaQuery.of(context).size.height,
-          );
+              index, MediaQuery.of(context).size.height,
+              offset: kToolbarHeight);
         },
       ),
     );

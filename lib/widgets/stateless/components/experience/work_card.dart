@@ -5,6 +5,7 @@ import 'package:jlaboll_web/widgets/stateless/components/experience/vertical_wor
 import 'package:responsive_framework/responsive_breakpoints.dart';
 
 import '../../../../classes/simple_responsive_value.dart';
+import '../../../inherited/responsive_padding_query.dart';
 
 class CEWorkCard extends StatelessWidget {
   CEWorkCard(
@@ -34,7 +35,8 @@ class CEWorkCard extends StatelessWidget {
 
     return Padding(
       padding: EdgeInsets.all(
-          SimpleResponsiveValue<double>(context, 9, 11, 13, 15).value),
+        ResponsivePaddingQuery.padding(context, "REGULAR"),
+      ),
       child: CCBulletListPopupCard(
         popupTitle: detailsTitle,
         popupBulletedContent: details,

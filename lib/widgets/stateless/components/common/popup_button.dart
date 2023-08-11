@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../classes/simple_responsive_value.dart';
+import '../../../inherited/responsive_padding_query.dart';
 import '../app/app_text.dart';
 
 class CCPopupButton extends StatelessWidget {
@@ -15,7 +15,12 @@ class CCPopupButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double padding = SimpleResponsiveValue<double>(context, 3, 4, 5, 7).value;
+    EdgeInsetsGeometry padding = EdgeInsets.only(
+      top: ResponsivePaddingQuery.padding(context, "REGULAR"),
+      left: ResponsivePaddingQuery.padding(context, "LARGE"),
+      right: ResponsivePaddingQuery.padding(context, "LARGE"),
+      bottom: ResponsivePaddingQuery.padding(context, "SMALL"),
+    );
 
     return ElevatedButton(
       onPressed: () => showDialog(
@@ -29,11 +34,7 @@ class CCPopupButton extends StatelessWidget {
                 shouldDecorate: true,
               ),
             ),
-            titlePadding: EdgeInsets.only(
-                top: padding * 2,
-                left: padding * 4,
-                right: padding * 4,
-                bottom: padding),
+            titlePadding: padding,
             children: popupChildren,
           );
         },
