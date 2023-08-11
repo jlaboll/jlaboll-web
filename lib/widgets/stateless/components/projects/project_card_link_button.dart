@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../classes/simple_responsive_value.dart';
+import '../../../inherited/responsive_padding_query.dart';
 import '../../../inherited/url_launcher_query.dart';
 
 class CPProjectCardLinkButton extends StatelessWidget {
@@ -13,7 +13,7 @@ class CPProjectCardLinkButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.all(
-        SimpleResponsiveValue<double>(context, 2, 3, 3, 4).value,
+        ResponsivePaddingQuery.padding(context, "SMALLEST"),
       ),
       child: OutlinedButton(
         style: ButtonStyle(
@@ -45,7 +45,7 @@ class CPProjectCardLinkButton extends StatelessWidget {
             ? null
             : UrlLauncherQuery.of(context).launchURL(websiteLink),
         child: Icon(
-          Icons.open_in_new,
+          icon,
           color: websiteLink.isEmpty
               ? Theme.of(context).colorScheme.surfaceVariant
               : Theme.of(context).colorScheme.tertiary,

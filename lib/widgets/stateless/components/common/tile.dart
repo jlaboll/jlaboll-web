@@ -16,7 +16,7 @@ class CCTile extends StatelessWidget {
       padding: EdgeInsets.symmetric(vertical: 5),
       child: SizedBox.square(
         dimension:
-            SimpleResponsiveValue<double>(context, 70, 90, 110, 130).value,
+            SimpleResponsiveValue<double>(context, 60, 85, 105, 125).value,
         child: FilledButton(
           style: ButtonStyle(
             shape: RoundedRectangle(),

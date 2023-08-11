@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:jlaboll_web/widgets/stateless/components/common/popup_card.dart';
 
-import '../../../../classes/simple_responsive_value.dart';
+import '../../../inherited/responsive_padding_query.dart';
 import '../app/app_text.dart';
 
 class CCBulletListPopupCard extends StatelessWidget {
@@ -22,8 +22,7 @@ class CCBulletListPopupCard extends StatelessWidget {
         popupBulletedContent.length,
         (index) => Padding(
           padding: EdgeInsets.symmetric(
-            horizontal:
-                SimpleResponsiveValue<double>(context, 18, 22, 26, 30).value,
+            horizontal: ResponsivePaddingQuery.padding(context, "LARGE"),
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.start,

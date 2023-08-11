@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:jlaboll_web/classes/simple_responsive_value.dart';
 import 'package:jlaboll_web/widgets/stateless/components/common/bullet_list_popup_card.dart';
 import 'package:jlaboll_web/widgets/stateless/components/projects/horizontal_project_card_content.dart';
 import 'package:jlaboll_web/widgets/stateless/components/projects/vertical_project_card_content.dart';
 import 'package:responsive_framework/responsive_breakpoints.dart';
+
+import '../../../inherited/responsive_padding_query.dart';
 
 class CPProjectCard extends StatelessWidget {
   CPProjectCard(
@@ -27,7 +28,7 @@ class CPProjectCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.all(
-        SimpleResponsiveValue<double>(context, 9, 11, 13, 15).value,
+        ResponsivePaddingQuery.padding(context, "REGULAR"),
       ),
       child: CCBulletListPopupCard(
         popupTitle: aboutTitle,
