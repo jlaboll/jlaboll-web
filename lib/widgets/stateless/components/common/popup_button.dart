@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:responsive_framework/responsive_breakpoints.dart';
 
+import '../../../../classes/simple_responsive_value.dart';
 import '../app/app_text.dart';
 
 class CCPopupButton extends StatelessWidget {
@@ -15,21 +15,7 @@ class CCPopupButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double padding = 0;
-    switch (ResponsiveBreakpoints.of(context).breakpoint.name) {
-      case MOBILE:
-        padding = 3;
-        break;
-      case TABLET:
-        padding = 4;
-        break;
-      case DESKTOP:
-        padding = 5;
-        break;
-      default:
-        padding = 7;
-        break;
-    }
+    double padding = SimpleResponsiveValue<double>(context, 3, 4, 5, 7).value;
 
     return ElevatedButton(
       onPressed: () => showDialog(

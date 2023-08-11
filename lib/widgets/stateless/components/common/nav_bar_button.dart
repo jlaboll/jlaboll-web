@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:responsive_framework/responsive_breakpoints.dart';
 
 import '../../../../classes/on_press_opacity.dart';
+import '../../../../classes/simple_responsive_value.dart';
 import '../../../inherited/scroll_controller_query.dart';
 
 class CCNavBarButton extends StatelessWidget {
@@ -13,22 +13,6 @@ class CCNavBarButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double padding = 0;
-    switch (ResponsiveBreakpoints.of(context).breakpoint.name) {
-      case MOBILE:
-        padding = 5;
-        break;
-      case TABLET:
-        padding = 7;
-        break;
-      case DESKTOP:
-        padding = 9;
-        break;
-      default:
-        padding = 13;
-        break;
-    }
-
     return FilledButton(
       style: ButtonStyle(
         backgroundColor: OnPressOpacity(
@@ -47,12 +31,18 @@ class CCNavBarButton extends StatelessWidget {
       child: RotatedBox(
         quarterTurns: 3,
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: padding),
+          padding: EdgeInsets.symmetric(
+            horizontal:
+                SimpleResponsiveValue<double>(context, 5, 7, 9, 13).value,
+          ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: <Widget>[
               Padding(
-                padding: EdgeInsets.only(right: padding),
+                padding: EdgeInsets.only(
+                  right:
+                      SimpleResponsiveValue<double>(context, 5, 7, 9, 13).value,
+                ),
                 child: Icon(icon),
               ),
               Text(text),

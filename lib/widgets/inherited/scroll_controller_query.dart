@@ -20,9 +20,9 @@ class ScrollControllerQuery extends InheritedWidget {
     return ScrollControllerQuery.of(context).scrollController;
   }
 
-  void scrollTo(int index, double scrollDistance) {
+  void scrollTo(int index, double viewExtent) {
     scrollController.animateTo(
-      index * scrollDistance,
+      index * viewExtent,
       duration: const Duration(milliseconds: 500),
       curve: Curves.ease,
     );

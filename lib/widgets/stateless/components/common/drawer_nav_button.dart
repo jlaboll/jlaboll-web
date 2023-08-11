@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:jlaboll_web/widgets/inherited/scroll_controller_query.dart';
-import 'package:responsive_framework/responsive_breakpoints.dart';
+
+import '../../../../classes/simple_responsive_value.dart';
 
 class CCDrawerNavButton extends StatelessWidget {
   CCDrawerNavButton(
@@ -12,21 +13,7 @@ class CCDrawerNavButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double padding = 0;
-    switch (ResponsiveBreakpoints.of(context).breakpoint.name) {
-      case MOBILE:
-        padding = 5;
-        break;
-      case TABLET:
-        padding = 7;
-        break;
-      case DESKTOP:
-        padding = 9;
-        break;
-      default:
-        padding = 13;
-        break;
-    }
+    double padding = SimpleResponsiveValue<double>(context, 5, 7, 9, 13).value;
 
     return Padding(
       padding: EdgeInsets.all(padding),
@@ -45,7 +32,7 @@ class CCDrawerNavButton extends StatelessWidget {
           Scaffold.of(context).closeDrawer();
           ScrollControllerQuery.of(context).scrollTo(
             index,
-            MediaQuery.of(context).size.height - kToolbarHeight,
+            MediaQuery.of(context).size.height,
           );
         },
       ),

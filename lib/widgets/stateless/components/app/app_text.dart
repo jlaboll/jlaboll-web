@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:responsive_framework/responsive_breakpoints.dart';
+
+import '../../../../classes/simple_responsive_value.dart';
 
 enum CAAppTextStyle {
   TITLE,
@@ -25,31 +26,12 @@ class CAAppText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double titleFontSize = 0;
-    double subTitleFontSize = 0;
-    double bodyFontSize = 0;
-    switch (ResponsiveBreakpoints.of(context).breakpoint.name) {
-      case MOBILE:
-        titleFontSize = 20;
-        subTitleFontSize = 15;
-        bodyFontSize = 10;
-        break;
-      case TABLET:
-        titleFontSize = 25;
-        subTitleFontSize = 17;
-        bodyFontSize = 12;
-        break;
-      case DESKTOP:
-        titleFontSize = 30;
-        subTitleFontSize = 20;
-        bodyFontSize = 15;
-        break;
-      default:
-        titleFontSize = 35;
-        subTitleFontSize = 22;
-        bodyFontSize = 18;
-        break;
-    }
+    double titleFontSize =
+        SimpleResponsiveValue<double>(context, 22, 27, 32, 37).value;
+    double subTitleFontSize =
+        SimpleResponsiveValue<double>(context, 17, 19, 22, 24).value;
+    double bodyFontSize =
+        SimpleResponsiveValue<double>(context, 12, 14, 17, 20).value;
 
     switch (type) {
       case CAAppTextStyle.TITLE:
