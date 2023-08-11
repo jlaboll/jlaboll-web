@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:responsive_framework/responsive_framework.dart';
+
+import '../../../../classes/simple_responsive_value.dart';
 
 class CCAvatar extends StatelessWidget {
   CCAvatar({required this.url});
@@ -8,33 +9,14 @@ class CCAvatar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double avatarRadius = 0;
-    double avatarInsetRadius = 0;
-    switch (ResponsiveBreakpoints.of(context).breakpoint.name) {
-      case MOBILE:
-        avatarRadius = 120;
-        avatarInsetRadius = 112;
-        break;
-      case TABLET:
-        avatarRadius = 135;
-        avatarInsetRadius = 125;
-        break;
-      case DESKTOP:
-        avatarRadius = 150;
-        avatarInsetRadius = 138;
-        break;
-      default:
-        avatarRadius = 170;
-        avatarInsetRadius = 155;
-        break;
-    }
-
     return LayoutBuilder(
       builder: (context, constraints) => CircleAvatar(
-        radius: avatarRadius,
+        radius:
+            SimpleResponsiveValue<double>(context, 120, 135, 150, 170).value,
         backgroundColor: Theme.of(context).colorScheme.tertiary,
         child: CircleAvatar(
-          radius: avatarInsetRadius,
+          radius:
+              SimpleResponsiveValue<double>(context, 112, 125, 138, 155).value,
           backgroundColor: Theme.of(context).colorScheme.tertiary,
           child: Container(
             decoration: BoxDecoration(

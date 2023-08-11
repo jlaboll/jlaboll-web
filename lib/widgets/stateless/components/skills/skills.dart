@@ -12,7 +12,7 @@ class CSSkills extends StatelessWidget {
     return CCTitledView(
       title: title,
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: children,
       ),
