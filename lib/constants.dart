@@ -111,13 +111,17 @@ List<Breakpoint> kResponsiveBreakpoints = <Breakpoint>[
 // App
 String kAppTitle = 'Jasen LaBolle';
 String kDefaultMediaUrl = 'https://media.jlaboll.dev/';
+String kLinkedInUrl = 'https://www.linkedin.com/in/jasen-labolle-7a57221a0';
+String kGithubUrl = 'https://github.com/jlaboll';
 
 // Home
 String kHomeNavLabel = 'Home';
 String kHomeAvatarUrl = kDefaultMediaUrl + 'profile_picture.jpg';
 String kHomeHeading1 = 'Hey! I am';
 String kHomeHeading2 = 'Jasen LaBolle';
-String kHomeHeading3 = 'Full Stack Developer';
+String kHomeHeading3a = 'Full Stack Developer // Operations Engineer';
+String kHomeHeading3b = 'Full Stack Developer +';
+String kHomeHeading4 = 'Operations Engineer';
 
 // About
 String kAboutNavLabel = 'About';
@@ -125,6 +129,11 @@ String kAboutHeading = 'About Me';
 String kAboutImageUrl = kDefaultMediaUrl + 'hedgehog.png';
 String kAboutButton1 = 'Contact Me';
 String kAboutButton2 = 'Download Resume';
+String kAboutPopupTitle = 'Contact Information';
+String kAboutLabel1 = 'Phone:';
+String kAboutLabel2 = 'Email: ';
+String kAboutContact1 = '(217) 721-7655';
+String kAboutContact2 = 'jasenlabolle@gmail.com';
 
 // Skills
 String kSkillsNavLabel = 'Skills';
@@ -164,24 +173,175 @@ List<String> kAboutDetails = [
 
 // Skills
 // Experience
+List<String> kExperienceSuranDetails = <String>[
+  'Worked remotely, both collaboratively and independently, in a Agile development cycle',
+  'Developed both front and back end apps/services with automated CI/CD pipelines',
+  'Helped diagnose and resolve issues from a developer, data services, and operations standpoint',
+  'Collaborated in planning major development projects',
+  'Monitored services and performed disaster recovery',
+  'Developed deployment and monitoring solutions for new development',
+  'Collaborated on development changes for PCI compliance',
+];
+
+List<String> kExperienceTargetDetails = <String>[
+  'Worked in a mostly independent environment to serve guests and reach area sales goals',
+  'Gained further information on a variety of products to help in answering guest questions',
+];
+
+List<String> kExperienceFyxitDetails = <String>[
+  'Worked closely in a dynamic environment to solve problems both single handedly and as a team',
+  'Diagnosed issues, priced repairs, contacted customers, and performed repairs on thousands of tickets',
+  'Focused on providing a great customer service experience',
+];
+
 // Projects
+List<String> kProjectsJlabollDetails = <String>[
+  'The goal of this project was to demonstrate front-end development experience, while also supplementing a traditional resume.',
+  'I chose to start the project in Flutter after learning of Flutter\'s ability to build native multi-platform applications in a single codebase.',
+  'I also decided I would host the site on-premises behind a reverse proxy/load balancer as not to conflict with other services on the network.',
+  'I learned a lot working on this project, and have enjoyed returning to it every few months to apply new ideas and refactor areas I feel I can improve.',
+  'This is my longest running project, starting under a different repository and language in 2021, but seeing the most drastic improvements starting Jan. 2023.',
+];
+
+List<String> kProjectsOnPremKubeDetails = <String>[
+  'The goal of this project was to deploy a production-level on-premises instance of Jetbrains Space.',
+  'Documentation suggested production-level deployments had to run on Kubernetes, which became the focus of the project from that point.',
+  'I had to build a understanding of Kubernetes from scratch, only being familiar with Docker containers previously.',
+  'After initially exploring cluster initialization with a custom ansible playbook, I ended up initializing with Kubespray.',
+  'Then I again tried my hand at creating deployments on the cluster with Ansible before learning about Helm.',
+  'Once I had settled into a initialization/deployment strategy, I began learning about the different deployments I would need for a Space deployment.',
+  'The tech stack on the cluster currently includes: Traefik, Ceph, Redis, PostgreSQL, ElasticSearch, MinIO, Prometheus, Grafana, and Jetbrains Space.',
+  'This was the most difficult and rewarding project I have worked on for personal use, and I hope to continue utilizing the cluster and refining the existing deployments to provide a container-based solution for all my on-premises projects.'
+];
+
+List<String> kProjectsPostgresDetails = <String>[
+  'The goal of this project was to exercise my knowledge of PostgreSQL and PSQL scripting.',
+];
+
+// Other Constants //
+// Home
+// About
+// Skills
+// Experience
+List<Map<String, String>> kExperienceCardMapList = <Map<String, String>>[
+  {
+    "image": kDefaultMediaUrl + 'suran.jpg',
+    "title": 'Full Stack Developer // Operations Engineer',
+    "company": 'Suran Systems Inc.',
+    "start": 'Mar. 2021',
+    "end": 'Present',
+    "detail_title": 'Responsibilities at Suran Systems',
+    "detail_map_key": 'suran',
+    "url": 'https://www.suran.com/',
+  },
+  {
+    "image": kDefaultMediaUrl + 'target.png',
+    "title": 'Specialty Sales',
+    "company": 'Target',
+    "start": 'Sept. 2020',
+    "end": 'Jan. 2021',
+    "detail_title": 'Responsibilities at Target',
+    "detail_map_key": 'target',
+    "url": 'https://www.target.com/',
+  },
+  {
+    "image": kDefaultMediaUrl + 'fyxit.png',
+    "title": 'Manager // Apple Technician',
+    "company": 'Suran Systems Inc.',
+    "start": 'July 2017',
+    "end": 'May 2020',
+    "detail_title": 'Responsibilities at Fyxit',
+    "detail_map_key": 'fyxit',
+    "url": 'https://www.fyxit.net/',
+  },
+];
+
+Map<String, List<String>> kExperienceCardMapListDetails = {
+  "suran": kExperienceSuranDetails,
+  "target": kExperienceTargetDetails,
+  "fyxit": kExperienceFyxitDetails,
+};
+
+// Projects
+List<Map<String, String>> kProjectsCardMapList = <Map<String, String>>[
+  {
+    "title": 'Personal Website',
+    "language": 'Flutter (Dart)',
+    "screenshot": kDefaultMediaUrl + 'personal_site_screenshot.png',
+    "demo": 'https://www.jlaboll.dev',
+    "repo": 'https://github.com/jlaboll/jlaboll-web',
+    "about_title": 'About jlabolle.dev',
+    "detail_map_key": 'jlaboll',
+  },
+  {
+    "title": 'On-Premises Kubernetes Deployment',
+    "language": 'Kubernetes / Helm / Bash',
+    "screenshot": kDefaultMediaUrl + 'kubernetes_space.png',
+    "demo": 'https://portal.hedgehogcode.dev',
+    "repo": '',
+    "about_title": 'About On-Premises Kubernetes Cluster',
+    "detail_map_key": 'kube',
+  },
+  {
+    "title": 'Sample PostgreSQL Database, Queries, and Scripting',
+    "language": 'PostgreSQL',
+    "screenshot": kDefaultMediaUrl + 'database.png',
+    "demo": '',
+    "repo": 'https://github.com/jlaboll/postgresql_samples',
+    "about_title": 'About Sample PostgreSQL Script',
+    "detail_map_key": 'postgres',
+  },
+];
+
+Map<String, List<String>> kProjectsCardMapListDetails = {
+  "jlaboll": kProjectsJlabollDetails,
+  "kube": kProjectsOnPremKubeDetails,
+  "postgres": kProjectsPostgresDetails,
+};
 
 // Widget Lists //
 // Home
-List<Widget> kHomeChildren = <Widget>[
+List<Widget> kHorizontalHomeChildren = <Widget>[
   CAAppText(
     type: CAAppTextStyle.SUBTITLE_SECONDARY,
-    text: 'Hey! I am',
+    text: kHomeHeading1,
     shouldBold: true,
   ),
   CAAppText(
     type: CAAppTextStyle.TITLE,
-    text: 'Jasen LaBolle',
+    text: kHomeHeading2,
     shouldBold: true,
   ),
   CAAppText(
     type: CAAppTextStyle.SUBTITLE,
-    text: 'Full Stack Developer',
+    text: kHomeHeading3a,
+    shouldBold: true,
+  ),
+  Padding(padding: EdgeInsets.all(10)),
+  CCAvatar(
+    url: kHomeAvatarUrl,
+  ),
+];
+
+List<Widget> kVerticalHomeChildren = <Widget>[
+  CAAppText(
+    type: CAAppTextStyle.SUBTITLE_SECONDARY,
+    text: kHomeHeading1,
+    shouldBold: true,
+  ),
+  CAAppText(
+    type: CAAppTextStyle.TITLE,
+    text: kHomeHeading2,
+    shouldBold: true,
+  ),
+  CAAppText(
+    type: CAAppTextStyle.SUBTITLE,
+    text: kHomeHeading3b,
+    shouldBold: true,
+  ),
+  CAAppText(
+    type: CAAppTextStyle.SUBTITLE,
+    text: kHomeHeading4,
     shouldBold: true,
   ),
   Padding(padding: EdgeInsets.all(10)),
@@ -193,8 +353,8 @@ List<Widget> kHomeChildren = <Widget>[
 // About
 List<Widget> kAboutButtons = <Widget>[
   CCPopupButton(
-    buttonText: 'Contact Me',
-    popupTitle: 'Contact Information',
+    buttonText: kAboutButton1,
+    popupTitle: kAboutPopupTitle,
     popupChildren: <Widget>[
       IntrinsicWidth(
         child: Column(
@@ -209,11 +369,11 @@ List<Widget> kAboutButtons = <Widget>[
                 children: <Widget>[
                   CAAppText(
                     type: CAAppTextStyle.BODY,
-                    text: 'Phone:',
+                    text: kAboutLabel1,
                   ),
                   CAAppText(
                     type: CAAppTextStyle.BODY,
-                    text: '(217) 721-7655',
+                    text: kAboutContact1,
                   ),
                 ],
               ),
@@ -226,11 +386,11 @@ List<Widget> kAboutButtons = <Widget>[
                 children: <Widget>[
                   CAAppText(
                     type: CAAppTextStyle.BODY,
-                    text: 'Email:',
+                    text: kAboutLabel2,
                   ),
                   CAAppText(
                     type: CAAppTextStyle.BODY,
-                    text: 'jasenlabolle@gmail.com',
+                    text: kAboutContact2,
                   ),
                 ],
               ),
@@ -241,7 +401,7 @@ List<Widget> kAboutButtons = <Widget>[
     ],
   ),
   CCFileDownloadButton(
-    buttonText: 'Download Resume',
+    buttonText: kAboutButton2,
     fileUrl: kDefaultMediaUrl + 'Jasen_LaBolle.pdf',
   ),
 ];
@@ -362,119 +522,81 @@ List<Widget> kOtherSkillsInfrastructure = <Widget>[
   ),
 ];
 
+List<List<Widget>> kProfessionalSkillsTiles = <List<Widget>>[
+  kProfessionalSkillsLanguages,
+  kProfessionalSkillsInfrastructure,
+  kProfessionalSkillsTools,
+];
+
+List<List<Widget>> kOtherSkillsTiles = <List<Widget>>[
+  kOtherSkillsLanguages,
+  kOtherSkillsInfrastructure,
+];
+
 List<Widget> kSkillsChildren = <Widget>[
   CSSkillTileWrap(
     title: kSkillsSubheading1,
-    tileChildrenLists: <List<Widget>>[
-      kProfessionalSkillsLanguages,
-      kProfessionalSkillsInfrastructure,
-      kProfessionalSkillsTools
-    ],
+    tileChildrenList: kProfessionalSkillsTiles.fold<List<Widget>>(
+      <Widget>[],
+      (previousValue, element) {
+        previousValue.insertAll(previousValue.length, element);
+        return previousValue;
+      },
+    ),
   ),
   CSSkillTileWrap(
     title: kSkillsSubheading2,
-    tileChildrenLists: <List<Widget>>[
-      kOtherSkillsLanguages,
-      kOtherSkillsInfrastructure,
-    ],
+    tileChildrenList: kOtherSkillsTiles.fold<List<Widget>>(
+      <Widget>[],
+          (previousValue, element) {
+        previousValue.insertAll(previousValue.length, element);
+        return previousValue;
+      },
+    ),
   ),
 ];
 
 // Experience
-List<Widget> kExperienceChildren = <Widget>[
-  CEWorkCard(
-    imageUrl: kDefaultMediaUrl + 'suran.jpg',
-    position: 'Full Stack Developer',
-    company: 'Suran Systems Inc.',
-    startDate: 'Mar. 2021',
-    endDate: 'Present',
-    detailsTitle: 'Responsibilities at Suran Systems',
-    details: <String>[
-      'Worked remotely, both collaboratively and independently, in a Agile development cycle',
-      'Developed both front and back end apps/services with automated CI/CD pipelines',
-      'Helped diagnose and resolve issues from a developer, data services, and operations standpoint',
-      'Collaborated in planning major development projects',
-      'Monitored services and performed disaster recovery',
-      'Developed deployment and monitoring solutions for new development',
-      'Collaborated on development changes for PCI compliance',
-    ],
-    websiteUrl: 'https://www.suran.com/',
+List<Widget> kExperienceChildren = List.generate(
+  kExperienceCardMapList.length,
+  (index) => CEWorkCard(
+    imageUrl: kExperienceCardMapList[index]["image"]!,
+    position: kExperienceCardMapList[index]["title"]!,
+    company: kExperienceCardMapList[index]["company"]!,
+    startDate: kExperienceCardMapList[index]["start"]!,
+    endDate: kExperienceCardMapList[index]["end"]!,
+    detailsTitle: kExperienceCardMapList[index]["detail_title"]!,
+    details: kExperienceCardMapListDetails[kExperienceCardMapList[index]
+        ["detail_map_key"]!]!,
+    websiteUrl: kExperienceCardMapList[index]["url"]!,
   ),
-  CEWorkCard(
-    imageUrl: kDefaultMediaUrl + 'target.png',
-    position: 'Specialty Sales',
-    company: 'Target',
-    startDate: 'Sept. 2020',
-    endDate: 'Jan. 2021',
-    detailsTitle: 'Responsibilities at Target',
-    details: <String>[
-      'Worked in a mostly independent environment to serve guests and reach area sales goals',
-      'Gained further information on a variety of products to help in answering guest questions',
-    ],
-    websiteUrl: 'https://www.target.com/',
-  ),
-  CEWorkCard(
-    imageUrl: kDefaultMediaUrl + 'fyxit.png',
-    position: 'Manager / Apple Technician',
-    company: 'Fyxit Tech Repair and Services',
-    startDate: 'July 2017',
-    endDate: 'May 2020',
-    detailsTitle: 'Responsibilities at Fyxit',
-    details: <String>[
-      'Worked closely in a dynamic environment to solve problems both single handedly and as a team',
-      'Diagnosed issues, priced repairs, contacted customers, and performed repairs on thousands of tickets',
-      'Focused on providing a great customer service experience',
-    ],
-    websiteUrl: 'https://www.fyxit.net/',
-  ),
-];
+);
 
 // Projects
-List<Widget> kProjectsChildren = <Widget>[
-  CPProjectCard(
-    title: 'Personal Website',
-    language: 'Flutter (Dart)',
-    demoScreenshotLink: kDefaultMediaUrl + 'personal_site_screenshot.png',
-    demoLink: 'https://jlabolle.dev',
-    repoLink: 'https://github.com/jlaboll/jlaboll-web/tree/main',
-    aboutTitle: 'About jlabolle.dev',
-    about: <String>[
-      'The goal of this project was to demonstrate front-end development experience, while also supplementing a traditional resume.',
-      'I chose to start the project in Flutter after learning of Flutter\'s ability to build native multi-platform applications in a single codebase.',
-      'I also decided I would host the site on-premises behind a reverse proxy/load balancer as not to conflict with other services on the network.',
-      'I learned a lot working on this project, and have enjoyed returning to it every few months to apply new ideas and refactor areas I feel I can improve.',
-      'This is my longest running project, starting under a different repository and language in 2021, but seeing the most drastic improvements starting Jan. 2023.',
-    ],
+List<Widget> kProjectsChildren = List.generate(
+  kProjectsCardMapList.length,
+  (index) => CPProjectCard(
+    title: kProjectsCardMapList[index]["title"]!,
+    language: kProjectsCardMapList[index]["language"]!,
+    demoScreenshotLink: kProjectsCardMapList[index]["screenshot"]!,
+    demoLink: kProjectsCardMapList[index]["demo"]!,
+    repoLink: kProjectsCardMapList[index]["repo"]!,
+    aboutTitle: kProjectsCardMapList[index]["about_title"]!,
+    about: kProjectsCardMapListDetails[kProjectsCardMapList[index]
+        ["detail_map_key"]!]!,
   ),
-  CPProjectCard(
-    title: 'On-Premises Kubernetes Deployment',
-    language: 'Kubernetes / Helm / Bash',
-    demoScreenshotLink: kDefaultMediaUrl + 'kubernetes_space.png',
-    demoLink: 'https://portal.hedgehogcode.dev',
-    repoLink: '',
-    aboutTitle: 'About On-Premises Kubernetes Cluster',
-    about: <String>[
-      'The goal of this project was to deploy a production-level on-premises instance of Jetbrains Space.',
-      'Documentation suggested production-level deployments had to run on Kubernetes, which became the focus of the project from that point.',
-      'I had to build a understanding of Kubernetes from scratch, only being familiar with Docker containers previously.',
-      'After initially exploring cluster initialization with a custom ansible playbook, I ended up initializing with Kubespray.',
-      'Then I again tried my hand at creating deployments on the cluster with Ansible before learning about Helm.',
-      'Once I had settled into a initialization/deployment strategy, I began learning about the different deployments I would need for a Space deployment.',
-      'The tech stack on the cluster currently includes: Traefik, Ceph, Redis, PostgreSQL, ElasticSearch, MinIO, Prometheus, Grafana, and Jetbrains Space.',
-      'This was the most difficult and rewarding project I have worked on for personal use, and I hope to continue utilizing the cluster and refining the existing deployments to provide a container-based solution for all my on-premises projects.'
-    ],
-  ),
-];
+);
 
 // App
 List<Widget> kQuickLinks = <Widget>[
   CCQuickLinkButton(
-    url: 'https://github.com/jlaboll',
+    url: kGithubUrl,
     iconUrl: kDefaultMediaUrl + 'github_icon.png',
   ),
   CCQuickLinkButton(
-      url: 'https://www.linkedin.com/in/jasen-labolle-7a57221a0',
-      iconUrl: kDefaultMediaUrl + 'linkedin_icon.png'),
+    url: kLinkedInUrl,
+    iconUrl: kDefaultMediaUrl + 'linkedin_icon.png',
+  ),
 ];
 
 List<CCPage> kPages = <CCPage>[
@@ -485,7 +607,8 @@ List<CCPage> kPages = <CCPage>[
       icon: kHomeNavIcon,
     ),
     content: CHHome(
-      homeChildren: kHomeChildren,
+      horizontalHomeChildren: kHorizontalHomeChildren,
+      verticalHomeChildren: kVerticalHomeChildren,
     ),
   ),
   CCPage(

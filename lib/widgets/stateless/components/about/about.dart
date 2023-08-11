@@ -3,6 +3,7 @@ import 'package:jlaboll_web/widgets/stateless/components/common/image_animator.d
 import 'package:jlaboll_web/widgets/stateless/components/common/titled_view.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
+import '../../../../classes/simple_responsive_value.dart';
 import '../app/app_text.dart';
 
 class CAbAbout extends StatelessWidget {
@@ -19,26 +20,10 @@ class CAbAbout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double padding = 0;
-    double imageWidth = 0;
-    switch (ResponsiveBreakpoints.of(context).breakpoint.name) {
-      case MOBILE:
-        padding = 20;
-        imageWidth = 140;
-        break;
-      case TABLET:
-        padding = 30;
-        imageWidth = 160;
-        break;
-      case DESKTOP:
-        padding = 40;
-        imageWidth = 225;
-        break;
-      default:
-        padding = 50;
-        imageWidth = 260;
-        break;
-    }
+    double padding =
+        SimpleResponsiveValue<double>(context, 20, 30, 40, 50).value;
+    double imageWidth =
+        SimpleResponsiveValue<double>(context, 140, 160, 225, 260).value;
 
     return CCTitledView(
       title: title,
@@ -57,7 +42,7 @@ class CAbAbout extends StatelessWidget {
   }
 
   Widget _imageContainer(double padding, double imageWidth) {
-    return Container(
+    return Padding(
       padding: EdgeInsets.all(padding),
       child: SizedBox(
         width: imageWidth,
@@ -81,7 +66,9 @@ class CAbAbout extends StatelessWidget {
                 return LayoutBuilder(
                   builder: (context, constraints) => SizedBox(
                     width: constraints.maxWidth,
-                    child: buttonChild,
+                    child: Center(
+                      child: buttonChild,
+                    ),
                   ),
                 );
               } else {
@@ -103,7 +90,7 @@ class CAbAbout extends StatelessWidget {
   Widget _verticalAxisListButtonChild(double padding) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: List.generate(
         buttons.length,
         (index) => Padding(
@@ -130,7 +117,7 @@ class CAbAbout extends StatelessWidget {
 
   Widget _verticalAxis(double padding, double imageWidth) {
     return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      mainAxisAlignment: MainAxisAlignment.start,
       children: <Widget>[
         _imageContainer(padding, imageWidth),
         _listBuilder(_verticalAxisListButtonChild(padding), padding),
