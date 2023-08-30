@@ -28,7 +28,7 @@ class LMobile extends StatelessWidget {
           builder: (BuildContext context, BoxConstraints constraints) {
             return ListView(
               controller: ScrollControllerQuery.controllerOf(context),
-              itemExtent: constraints.maxHeight,
+              itemExtent: MediaQuery.of(context).size.height,
               children: pages,
             );
           },

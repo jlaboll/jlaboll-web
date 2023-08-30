@@ -13,6 +13,8 @@ class LAppDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBody: true,
+      resizeToAvoidBottomInset: true,
       extendBodyBehindAppBar: true,
       appBar: appBar,
       drawer: drawer,

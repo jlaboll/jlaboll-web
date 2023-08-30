@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../classes/simple_responsive_value.dart';
+import '../../../inherited/responsive_padding_query.dart';
 
 class CCPage extends StatelessWidget {
   CCPage({required this.navButton, required this.content});
@@ -17,7 +17,7 @@ class CCPage extends StatelessWidget {
           height: constraints.maxHeight,
           child: Padding(
             padding: EdgeInsets.all(
-              SimpleResponsiveValue<double>(context, 8, 10, 12, 20).value,
+              ResponsivePaddingQuery.padding(context, "REGULAR"),
             ),
             child: content,
           ),

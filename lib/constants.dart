@@ -107,7 +107,89 @@ List<Breakpoint> kResponsiveBreakpoints = <Breakpoint>[
   ),
 ];
 
+List<Condition<double>> kSmallestPaddingConditions = <Condition<double>>[
+  Condition<double>.equals(
+    name: MOBILE,
+    value: 2,
+  ),
+  Condition<double>.equals(
+    name: TABLET,
+    value: 3,
+  ),
+  Condition<double>.equals(
+    name: DESKTOP,
+    value: 3,
+  ),
+  Condition<double>.largerThan(
+    name: DESKTOP,
+    value: 4,
+  ),
+];
+
+List<Condition<double>> kSmallPaddingConditions = <Condition<double>>[
+  Condition<double>.equals(
+    name: MOBILE,
+    value: 4,
+  ),
+  Condition<double>.equals(
+    name: TABLET,
+    value: 5,
+  ),
+  Condition<double>.equals(
+    name: DESKTOP,
+    value: 6,
+  ),
+  Condition<double>.largerThan(
+    name: DESKTOP,
+    value: 7,
+  ),
+];
+
+List<Condition<double>> kRegularPaddingConditions = <Condition<double>>[
+  Condition<double>.equals(
+    name: MOBILE,
+    value: 9,
+  ),
+  Condition<double>.equals(
+    name: TABLET,
+    value: 11,
+  ),
+  Condition<double>.equals(
+    name: DESKTOP,
+    value: 13,
+  ),
+  Condition<double>.largerThan(
+    name: DESKTOP,
+    value: 15,
+  ),
+];
+
+List<Condition<double>> kLargePaddingConditions = <Condition<double>>[
+  Condition<double>.equals(
+    name: MOBILE,
+    value: 18,
+  ),
+  Condition<double>.equals(
+    name: TABLET,
+    value: 22,
+  ),
+  Condition<double>.equals(
+    name: DESKTOP,
+    value: 26,
+  ),
+  Condition<double>.largerThan(
+    name: DESKTOP,
+    value: 30,
+  ),
+];
+
 // Strings //
+// Static strings
+final String kSMALLEST = 'SMALLEST';
+final String kSMALL = 'SMALL';
+final String kREGULAR = 'REGULAR';
+final String kLARGE = 'LARGE';
+
 // App
 String kAppTitle = 'Jasen LaBolle';
 String kDefaultMediaUrl = 'https://media.jlaboll.dev/';
@@ -548,7 +630,7 @@ List<Widget> kSkillsChildren = <Widget>[
     title: kSkillsSubheading2,
     tileChildrenList: kOtherSkillsTiles.fold<List<Widget>>(
       <Widget>[],
-          (previousValue, element) {
+      (previousValue, element) {
         previousValue.insertAll(previousValue.length, element);
         return previousValue;
       },

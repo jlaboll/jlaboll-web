@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:jlaboll_web/classes/simple_responsive_value.dart';
+import 'package:jlaboll_web/widgets/inherited/responsive_padding_query.dart';
 import 'package:jlaboll_web/widgets/stateless/components/app/app_text.dart';
 
 class CSSkillTileWrap extends StatelessWidget {
@@ -10,9 +10,6 @@ class CSSkillTileWrap extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double padding =
-        SimpleResponsiveValue<double>(context, 8, 10, 12, 14).value;
-
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -23,8 +20,8 @@ class CSSkillTileWrap extends StatelessWidget {
         ),
         Wrap(
           direction: Axis.horizontal,
-          spacing: padding,
-          runSpacing: padding,
+          spacing: ResponsivePaddingQuery.padding(context, "REGULAR"),
+          runSpacing: ResponsivePaddingQuery.padding(context, "REGULAR"),
           children: tileChildrenList,
         )
       ],

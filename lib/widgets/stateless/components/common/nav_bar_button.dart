@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../classes/on_press_opacity.dart';
-import '../../../../classes/simple_responsive_value.dart';
+import '../../../inherited/responsive_padding_query.dart';
 import '../../../inherited/scroll_controller_query.dart';
 
 class CCNavBarButton extends StatelessWidget {
@@ -32,16 +32,14 @@ class CCNavBarButton extends StatelessWidget {
         quarterTurns: 3,
         child: Padding(
           padding: EdgeInsets.symmetric(
-            horizontal:
-                SimpleResponsiveValue<double>(context, 5, 7, 9, 13).value,
+            horizontal: ResponsivePaddingQuery.padding(context, "REGULAR"),
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: <Widget>[
               Padding(
                 padding: EdgeInsets.only(
-                  right:
-                      SimpleResponsiveValue<double>(context, 5, 7, 9, 13).value,
+                  right: ResponsivePaddingQuery.padding(context, "REGULAR"),
                 ),
                 child: Icon(icon),
               ),

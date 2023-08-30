@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:jlaboll_web/widgets/stateless/components/app/app_text.dart';
 import 'package:jlaboll_web/widgets/stateless/components/experience/work_card_button.dart';
 
-import '../../../../classes/simple_responsive_value.dart';
+import '../../../inherited/responsive_padding_query.dart';
 import '../common/padded_network_image_from_size.dart';
 
 class CEVerticalWorkCardContent extends StatelessWidget {
@@ -32,7 +32,7 @@ class CEVerticalWorkCardContent extends StatelessWidget {
         Expanded(
           child: Padding(
             padding: EdgeInsets.all(
-              SimpleResponsiveValue<double>(context, 4, 5, 6, 7).value,
+              ResponsivePaddingQuery.padding(context, "SMALL"),
             ),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
@@ -41,8 +41,7 @@ class CEVerticalWorkCardContent extends StatelessWidget {
                 CCPaddedNetworkImageFromSize(
                   imageSize: imageSize,
                   imageUrl: imageUrl,
-                  padding:
-                      SimpleResponsiveValue<double>(context, 2, 3, 3, 4).value,
+                  padding: ResponsivePaddingQuery.padding(context, "SMALLEST"),
                 ),
                 CAAppText(
                   type: CAAppTextStyle.SUBTITLE,
@@ -62,7 +61,7 @@ class CEVerticalWorkCardContent extends StatelessWidget {
         ),
         CEWorkCardWebsiteButton(
           websiteUrl: websiteUrl,
-          padding: SimpleResponsiveValue<double>(context, 2, 3, 3, 4).value,
+          padding: ResponsivePaddingQuery.padding(context, "SMALLEST"),
         ),
       ],
     );

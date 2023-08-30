@@ -3,6 +3,7 @@ import 'package:jlaboll_web/widgets/stateless/components/common/padded_network_i
 import 'package:jlaboll_web/widgets/stateless/components/projects/project_card_button_column.dart';
 
 import '../../../../classes/simple_responsive_value.dart';
+import '../../../inherited/responsive_padding_query.dart';
 import '../app/app_text.dart';
 
 class CPVerticalProjectCardContent extends StatelessWidget {
@@ -27,8 +28,7 @@ class CPVerticalProjectCardContent extends StatelessWidget {
       children: <Widget>[
         Expanded(
           child: Padding(
-            padding: EdgeInsets.all(
-              SimpleResponsiveValue<double>(context, 4, 5, 6, 7).value,
+            padding: EdgeInsets.all(ResponsivePaddingQuery.padding(context, "SMALL"),
             ),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
@@ -44,7 +44,7 @@ class CPVerticalProjectCardContent extends StatelessWidget {
                   ).value,
                   imageUrl: demoScreenshotLink,
                   padding:
-                      SimpleResponsiveValue<double>(context, 4, 5, 6, 7).value,
+                  ResponsivePaddingQuery.padding(context, "REGULAR"),
                 ),
                 CAAppText(
                   type: CAAppTextStyle.SUBTITLE,
