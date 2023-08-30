@@ -8,19 +8,14 @@ import '../components/common/page.dart';
 import '../components/common/quick_link_bar.dart';
 
 class LMobile extends StatelessWidget {
-  LMobile(
-      {required this.pages,
-      required this.quickLinks,
-      required this.scaleWidth});
+  LMobile({required this.pages, required this.quickLinks});
 
   final List<CCPage> pages;
   final List<Widget> quickLinks;
-  final double scaleWidth;
 
   @override
   Widget build(BuildContext context) {
     return LAppDrawer(
-      responsiveScaleWidth: scaleWidth,
       appBar: CAAppDrawerButton(),
       drawer: CAAppDrawer(
         drawerChildren: List.generate(
@@ -33,7 +28,7 @@ class LMobile extends StatelessWidget {
           builder: (BuildContext context, BoxConstraints constraints) {
             return ListView(
               controller: ScrollControllerQuery.controllerOf(context),
-              itemExtent: constraints.maxHeight,
+              itemExtent: MediaQuery.of(context).size.height,
               children: pages,
             );
           },

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:responsive_framework/responsive_breakpoints.dart';
 
+import '../../../inherited/responsive_padding_query.dart';
 import '../app/app_text.dart';
 
 class CCPopupButton extends StatelessWidget {
@@ -15,21 +15,12 @@ class CCPopupButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double padding = 0;
-    switch (ResponsiveBreakpoints.of(context).breakpoint.name) {
-      case MOBILE:
-        padding = 3;
-        break;
-      case TABLET:
-        padding = 4;
-        break;
-      case DESKTOP:
-        padding = 5;
-        break;
-      default:
-        padding = 7;
-        break;
-    }
+    EdgeInsetsGeometry padding = EdgeInsets.only(
+      top: ResponsivePaddingQuery.padding(context, "REGULAR"),
+      left: ResponsivePaddingQuery.padding(context, "LARGE"),
+      right: ResponsivePaddingQuery.padding(context, "LARGE"),
+      bottom: ResponsivePaddingQuery.padding(context, "SMALL"),
+    );
 
     return ElevatedButton(
       onPressed: () => showDialog(
@@ -43,11 +34,7 @@ class CCPopupButton extends StatelessWidget {
                 shouldDecorate: true,
               ),
             ),
-            titlePadding: EdgeInsets.only(
-                top: padding * 2,
-                left: padding * 4,
-                right: padding * 4,
-                bottom: padding),
+            titlePadding: padding,
             children: popupChildren,
           );
         },

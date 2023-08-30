@@ -1,48 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:jlaboll_web/widgets/inherited/responsive_padding_query.dart';
 import 'package:jlaboll_web/widgets/stateless/components/app/app_text.dart';
-import 'package:responsive_framework/responsive_breakpoints.dart';
 
 class CSSkillTileWrap extends StatelessWidget {
-  CSSkillTileWrap({required this.title, required this.tileChildrenLists});
+  CSSkillTileWrap({required this.title, required this.tileChildrenList});
 
   final String title;
-  final List<List<Widget>> tileChildrenLists;
+  final List<Widget> tileChildrenList;
 
   @override
   Widget build(BuildContext context) {
-    double padding = 0;
-    switch (ResponsiveBreakpoints.of(context).breakpoint.name) {
-      case MOBILE:
-        padding = 8;
-        break;
-      case TABLET:
-        padding = 10;
-        break;
-      case DESKTOP:
-        padding = 12;
-        break;
-      default:
-        padding = 14;
-        break;
-    }
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       crossAxisAlignment: CrossAxisAlignment.start,
-      children: List.generate(
-        tileChildrenLists.length + 1,
-        (index) {
-          if (index == 0) {
-            return CAAppText(type: CAAppTextStyle.SUBTITLE, text: title);
-          } else {
-            return Wrap(
-              direction: Axis.horizontal,
-              spacing: padding,
-              runSpacing: padding,
-              children: tileChildrenLists[index - 1],
-            );
-          }
-        },
-      ),
+      children: <Widget>[
+        CAAppText(
+          type: CAAppTextStyle.SUBTITLE,
+          text: title,
+        ),
+        Wrap(
+          direction: Axis.horizontal,
+          spacing: ResponsivePaddingQuery.padding(context, "REGULAR"),
+          runSpacing: ResponsivePaddingQuery.padding(context, "REGULAR"),
+          children: tileChildrenList,
+        )
+      ],
     );
   }
 }
