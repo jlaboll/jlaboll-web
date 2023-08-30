@@ -248,32 +248,37 @@ IconData kProjectsNavIcon = Icons.code;
 // About
 List<String> kAboutDetails = [
   'I am a Full-Stack Software Developer, graduated December 2020 with a B.S. of Computer Science, and have been working professionally since developing frontend, backend, and devops solutions.',
-  'I have a passion for continuing to learn new technologies and solutions, and I am always excited and interested in expanding my skill set. In my professional career I have worked on desktop, mobile, and web frontend applications, as well as backend REST API\'s, and SQL databases.',
-  'In my free time, I have been working on a bare metal, high availability, on-premises K8\'s deployment, and exploring Flutter as a single codebase, multi-platform application framework.',
-  'I also am a huge fan of hedgehogs, and have a pet hedgehog named Penelope.',
+  'I have a passion for continuing to learn new technologies and solutions, and I am always excited and interested in expanding my skill set. In my professional career I have worked on desktop, mobile, and web frontend applications, RESTful API and SQL database backends, as well as various CI/CD tools.',
+  'In my free time, I have been working on a few projects. The most challenging was a on-premises bare metal K8\'s deployment with high availability. The cluster stack includes Ceph, MinIO S3, Prometheus, Grafana, Elastic stack, Redis, and PostgreSQL, supporting a On-Prem JetBrains Space deployment.',
+  'I have also been exploring Flutter as a single codebase, multi-platform application framework, and some small projects in PostgreSQL and Ruby on Rails.',
+  'Beyond development, I love music, games, and I am a huge fan of small animals (especially hedgehogs). I have 7 guinea pigs, and my pet hedgehog is named Penelope.',
 ];
 
 // Skills
 // Experience
 List<String> kExperienceSuranDetails = <String>[
-  'Worked remotely, both collaboratively and independently, in a Agile development cycle',
-  'Developed both front and back end apps/services with automated CI/CD pipelines',
-  'Helped diagnose and resolve issues from a developer, data services, and operations standpoint',
-  'Collaborated in planning major development projects',
-  'Monitored services and performed disaster recovery',
-  'Developed deployment and monitoring solutions for new development',
-  'Collaborated on development changes for PCI compliance',
+  'Worked both independently and in group settings to reach development goals, review code, troubleshoot issues, and share knowledge',
+  'Communicated frequently via Slack and Zoom with support, sales, operations, and administrative teams',
+  'Worked with Omnis Studio/Ruby on Rails/PostgreSQL/Ember.js/Java to develop new and improve existing features for desktop, mobile, and web as parts of a SaaS application in a Agile development cycle',
+  'Wrote and maintained unit and integration tests with OmnisTAP/RSpec/PGTAP/Ember/JUnit',
+  'Used Saltstack/Jenkins/Bash to build and maintain CI/CD pipelines for projects',
+  'Diagnosed, reported, and resolved issues within PostgreSQL databases using SQL/Perl/PSQL/Bash',
+  'Utilized Nagios/Rundeck/SSH to both monitor services and perform disaster recovery for both cloud and bare-metal servers',
+  'Improved security to become PCI compliant by masking PAN data from logs, reducing employee access to nodes that handled PCI data, and reducing the scope of maintaining compliance by moving all handling of PAN to a independent project/service',
 ];
 
 List<String> kExperienceTargetDetails = <String>[
-  'Worked in a mostly independent environment to serve guests and reach area sales goals',
-  'Gained further information on a variety of products to help in answering guest questions',
+  'Worked in an independent environment to assist customers and manage the electronics, media, and book departments',
+  'Prioritized responsibilities that included maintaining inventory accuracy, stocking products, processing deliveries, trainings on  sales trends/new products, and reaching area sales goals',
+  'Focused on providing a great customer service experience by dynamically approaching each individual',
 ];
 
 List<String> kExperienceFyxitDetails = <String>[
-  'Worked closely in a dynamic environment to solve problems both single handedly and as a team',
-  'Diagnosed issues, priced repairs, contacted customers, and performed repairs on thousands of tickets',
-  'Focused on providing a great customer service experience',
+  'Worked closely with others in a dynamic environment to solve device issues',
+  'Diagnosed device issues that included unexpected crashes, slow performance, or liquid/physical damages; performed repairs on thousands of tickets',
+  'Researched and compared vendors of replacement parts to ensure customers were receiving quality hardware at competitive prices',
+  'Stayed up-to-date on new products and competitor services/pricing',
+  'Performed on-site IT service/troubleshooting for both businesses and individuals',
 ];
 
 // Projects
